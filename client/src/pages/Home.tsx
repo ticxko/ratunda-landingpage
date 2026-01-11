@@ -10,7 +10,7 @@ import { Marquee } from "@/components/Marquee";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Button } from "@/components/ui/button";
 import { WhatsAppBubble } from "@/components/WhatsAppBubble";
-import heroImg from "@assets/hero_image.png"; 
+import logoImg from "@assets/01_Ratunda_-_Primary_Logo_1768104499437.png";
 
 // Service Data
 const services = [
@@ -53,12 +53,7 @@ export default function Home() {
       <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold font-display text-xl">
-              R
-            </div>
-            <span className="text-xl font-bold text-foreground font-display hidden sm:block">
-              Ratunda
-            </span>
+            <img src={logoImg} alt="Ratunda" className="h-10 w-auto" />
           </div>
           <Button 
             onClick={scrollToContact}
@@ -271,7 +266,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 text-center md:text-left">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold font-display mb-4">Ratunda</h3>
+              <img src={logoImg} alt="Ratunda" className="h-12 w-auto mb-6 brightness-0 invert" />
               <p className="text-gray-400 max-w-sm mx-auto md:mx-0">
                 Partner terpercaya untuk segala kebutuhan konstruksi dan renovasi rumah Anda. Mengutamakan kualitas dan kepuasan pelanggan.
               </p>
