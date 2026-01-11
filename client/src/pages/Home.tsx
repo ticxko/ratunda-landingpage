@@ -12,6 +12,9 @@ import { Button } from "@/components/ui/button";
 import { WhatsAppBubble } from "@/components/WhatsAppBubble";
 import logoImg from "@assets/01_Ratunda_-_Primary_Logo_crop_1768105271103.png";
 import heroImg from "@assets/supergrafis_1768108685140.png";
+import p1 from "@assets/crop-bon_1768110247720.jpg";
+import p2 from "@assets/crop-wan_1768110247720.jpg";
+import p3 from "@assets/crop-deb_1768110247721.jpg";
 
 // Service Data
 const services = [
@@ -148,17 +151,17 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.5 }}
-                  className="absolute bottom-8 left-8 bg-white/95 backdrop-blur px-6 py-4 rounded-2xl shadow-xl max-w-xs border border-gray-100"
+                  className="absolute bottom-8 left-8 bg-gray-100/95 backdrop-blur px-6 py-4 rounded-2xl shadow-xl max-w-xs border border-gray-200"
                 >
                   <div className="flex items-center gap-4 mb-2">
                     <div className="flex -space-x-3">
-                      {[1,2,3].map(i => (
-                        <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
+                      {[p1, p2, p3].map((img, i) => (
+                        <img key={i} src={img} className="w-8 h-8 rounded-full border-2 border-white object-cover" />
                       ))}
                     </div>
-                    <span className="font-bold text-foreground">500+</span>
+                    <span className="font-bold text-gray-900">100+</span>
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">
+                  <p className="text-sm text-gray-800 font-semibold">
                     Proyek renovasi telah diselesaikan dengan memuaskan.
                   </p>
                 </motion.div>
