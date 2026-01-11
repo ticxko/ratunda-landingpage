@@ -45,7 +45,7 @@ export default function Home() {
               R
             </div>
             <span className="text-xl font-bold text-foreground font-display hidden sm:block">
-              Renovasi<span className="text-primary">Id</span>
+              Ratunda
             </span>
           </div>
           <Button 
@@ -255,7 +255,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 text-center md:text-left">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold font-display mb-4">RenovasiId</h3>
+              <h3 className="text-2xl font-bold font-display mb-4">Ratunda</h3>
               <p className="text-gray-400 max-w-sm mx-auto md:mx-0">
                 Partner terpercaya untuk segala kebutuhan konstruksi dan renovasi rumah Anda. Mengutamakan kualitas dan kepuasan pelanggan.
               </p>
@@ -272,14 +272,14 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4 text-accent">Kontak</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>info@renovasi.id</li>
+                <li>info@ratunda.id</li>
                 <li>+62 812 3456 7890</li>
                 <li>Jakarta, Indonesia</li>
               </ul>
             </div>
           </div>
           <div className="pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
-            © 2024 RenovasiId. All rights reserved.
+            © 2024 Ratunda. All rights reserved.
           </div>
         </div>
       </footer>
