@@ -177,7 +177,7 @@ export default function Home() {
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-primary font-bold tracking-wider uppercase text-sm">Layanan Kami</span>
             <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
-              Layanan Trending
+              Apapun Masalah Rumah Anda, <br/> Kami Punya Solusinya
             </h2>
             <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
           </div>
@@ -195,33 +195,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Specialty List Section */}
-      <section className="py-20 border-t border-gray-100 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mb-4">
-              Spesialisasi Lainnya
-            </h2>
-            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[0, 1, 2].map((colIndex) => (
-              <div key={colIndex} className="space-y-4">
-                {specialties.slice(colIndex * 4, (colIndex + 1) * 4).map((specialty, idx) => (
-                  <div 
-                    key={idx}
-                    className="flex items-center gap-4 p-5 rounded-2xl bg-gray-50/50 border border-gray-100 hover:border-primary/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                      <specialty.icon className="w-6 h-6" />
-                    </div>
-                    <span className="font-bold text-foreground text-lg">{specialty.text}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+      {/* Marquee Section */}
+      <section className="py-12 border-y border-gray-100 bg-white">
+        <div className="container mx-auto px-4 md:px-6 mb-6 text-center">
+          <h3 className="text-xl md:text-2xl font-bold font-display text-foreground">
+            Spesialisasi Konstruksi Lainnya
+          </h3>
+        </div>
+        <div className="bg-primary/5 py-12 space-y-8">
+          <Marquee items={specialties.slice(0, 4)} speed="fast" />
+          <Marquee items={specialties.slice(4, 8)} direction="right" speed="fast" />
+          <Marquee items={specialties.slice(8)} speed="fast" />
         </div>
       </section>
 
