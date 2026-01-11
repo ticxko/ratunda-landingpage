@@ -264,8 +264,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-foreground text-white py-12 border-t border-white/10">
         <div className="container mx-auto px-4 md:px-6 text-center md:text-left">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
-            <div className="md:col-span-2">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+            <div className="md:col-span-2 lg:col-span-2">
               <img src={logoImg} alt="Ratunda" className="h-12 w-auto mb-6 brightness-0 invert" />
               <p className="text-gray-400 max-w-sm mx-auto md:mx-0">
                 Partner terpercaya untuk segala kebutuhan konstruksi dan renovasi rumah Anda. Mengutamakan kualitas dan kepuasan pelanggan.
@@ -279,6 +279,29 @@ export default function Home() {
                 <li>Instalasi Listrik</li>
                 <li>Desain Interior</li>
               </ul>
+            </div>
+            <div className="md:col-span-2 lg:col-span-1">
+              <h4 className="font-bold mb-4 text-accent">Layanan Lainnya</h4>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-400 text-xs">
+                <ul className="space-y-2">
+                  <li>Pasang Roster</li>
+                  <li>Plafon Akustik</li>
+                  <li>Dinding Panel</li>
+                  <li>Secondary Skin</li>
+                </ul>
+                <ul className="space-y-2">
+                  <li>Lantai Mezzanine</li>
+                  <li>Skylight</li>
+                  <li>Struktur Baja</li>
+                  <li>Bikin Taman</li>
+                </ul>
+                <ul className="space-y-2">
+                  <li>Jendela Aluminium</li>
+                  <li>Atap Bitumen</li>
+                  <li>Water Heater</li>
+                  <li>Meja Makan</li>
+                </ul>
+              </div>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-accent">Kontak</h4>
