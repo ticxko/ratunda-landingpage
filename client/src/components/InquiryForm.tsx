@@ -66,7 +66,7 @@ export function InquiryForm() {
                   <FormLabel className="font-semibold text-foreground/80">Nama Lengkap</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="John Doe" 
+                      placeholder="Desy Rahmawati" 
                       className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all placeholder:text-gray-500 text-gray-900" 
                       {...field} 
                     />
