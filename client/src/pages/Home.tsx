@@ -306,8 +306,8 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4 text-accent">Kontak</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>info@ratunda.id</li>
-                <li>+62 812 3456 7890</li>
+                <li>hello@ratunda.id</li>
+                <li>+62 811-8881-9865</li>
                 <li>Jakarta, Indonesia</li>
               </ul>
             </div>
