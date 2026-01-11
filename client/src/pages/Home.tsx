@@ -72,15 +72,16 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             {/* Text Content */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:pr-10"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent-foreground font-semibold text-sm mb-6 border border-accent/20">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent-foreground font-semibold text-xs mb-4 border border-accent/20">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
@@ -88,7 +89,7 @@ export default function Home() {
                 Jasa Renovasi Terpercaya
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-display text-foreground leading-[1.1] mb-6">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-display text-foreground leading-[1.1] mb-4">
                 Solusi Renovasi <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
                   Rumah & Konstruksi
@@ -96,26 +97,26 @@ export default function Home() {
                 <br /> Modern
               </h1>
               
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-lg">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-md">
                 Wujudkan hunian impian Anda dengan layanan profesional, transparan, dan hasil berkualitas tinggi di seluruh Indonesia.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button 
                   onClick={scrollToContact}
-                  className="h-14 px-8 rounded-full text-lg font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
+                  className="h-12 px-6 rounded-full text-base font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
                 >
-                  Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-5 h-5" />
+                  Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
                 <Button 
                   variant="outline"
-                  className="h-14 px-8 rounded-full text-lg font-semibold border-2 border-border hover:bg-gray-50 text-foreground"
+                  className="h-12 px-6 rounded-full text-base font-semibold border-2 border-border hover:bg-gray-50 text-foreground"
                 >
-                  <Phone className="mr-2 w-5 h-5" /> 0811-8881-9865
+                  <Phone className="mr-2 w-4 h-4" /> 0811-8881-9865
                 </Button>
               </div>
 
-              <div className="mt-12 flex items-center gap-6 text-sm font-medium text-muted-foreground">
+              <div className="mt-8 flex items-center gap-4 text-xs font-medium text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-secondary" /> Bergaransi
                 </div>
@@ -133,13 +134,13 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="relative"
+              className="relative lg:col-span-1"
             >
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
                 <img 
                   src={heroImg}
                   alt="Modern Home Renovation Supergraphic" 
-                  className="w-full h-auto object-contain"
+                  className="w-full h-auto scale-110 object-contain"
                 />
                 
                 {/* Floating Badge */}
