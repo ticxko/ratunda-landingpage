@@ -31,7 +31,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -p "${{ secrets.DEPLOY_PORT }}" "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" \
             "if [ -d /home/${{ secrets.DEPLOY_USER }}/ratunda-landingpage ]; then \
-              cd /home/${{ secrets.DEPLOY_USER }}/ratunda-landingpage && git pull; \
+              cd /home/${{ secrets.DEPLOY_USER }}/ratunda-landingpage && chmod -R u+w .git/objects 2>/dev/null || true && git pull; \
             else \
               cd /home/${{ secrets.DEPLOY_USER }} && git clone git@github.com:${{ github.repository }}.git ratunda-landingpage; \
             fi"
