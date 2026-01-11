@@ -77,7 +77,19 @@
 }
 
 .animate-scroll {
-  animation: scroll 40s linear infinite;
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll-slow {
+  animation: scroll 45s linear infinite;
+}
+
+.animate-scroll-fast {
+  animation: scroll 15s linear infinite;
+}
+
+.direction-reverse {
+  animation-direction: reverse;
 }
 
 .pause-on-hover:hover {

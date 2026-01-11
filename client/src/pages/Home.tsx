@@ -208,9 +208,9 @@ export default function Home() {
           </h3>
         </div>
         <div className="space-y-4">
-          <Marquee items={specialties.slice(0, 4)} />
-          <Marquee items={specialties.slice(4, 8)} className="bg-secondary/5" />
-          <Marquee items={specialties.slice(8)} />
+          <Marquee items={specialties.slice(0, 4)} speed="fast" />
+          <Marquee items={specialties.slice(4, 8)} className="bg-secondary/5" direction="right" speed="fast" />
+          <Marquee items={specialties.slice(8)} speed="fast" />
         </div>
       </section>
 

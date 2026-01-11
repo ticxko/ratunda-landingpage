@@ -9,12 +9,22 @@ interface MarqueeItem {
 interface MarqueeProps {
   items: MarqueeItem[];
   className?: string;
+  direction?: "left" | "right";
+  speed?: "slow" | "medium" | "fast";
 }
 
-export function Marquee({ items, className }: MarqueeProps) {
+export function Marquee({ items, className, direction = "left", speed = "medium" }: MarqueeProps) {
+  const speedClass = {
+    slow: "animate-scroll-slow",
+    medium: "animate-scroll",
+    fast: "animate-scroll-fast"
+  }[speed];
+
+  const directionClass = direction === "right" ? "direction-reverse" : "";
+
   return (
     <div className={cn("relative flex overflow-hidden w-full py-8 bg-primary/5", className)}>
-      <div className="flex animate-scroll whitespace-nowrap pause-on-hover">
+      <div className={cn("flex whitespace-nowrap pause-on-hover", speedClass, directionClass)}>
         {/* Render items twice to create seamless loop */}
         {[...items, ...items].map((item, idx) => (
           <div
