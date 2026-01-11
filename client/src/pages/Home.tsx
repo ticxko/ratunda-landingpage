@@ -272,7 +272,7 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4 text-accent">Layanan</h4>
+              <h4 className="font-bold mb-4 text-accent">Layanan Trending</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li>Renovasi Rumah</li>
                 <li>Perbaikan Atap</li>
@@ -282,7 +282,7 @@ export default function Home() {
             </div>
             <div className="md:col-span-1">
               <h4 className="font-bold mb-4 text-accent">Layanan Lainnya</h4>
-              <div className="grid grid-cols-3 gap-x-8 gap-y-2 text-gray-400 text-xs min-w-[300px] md:min-w-[450px]">
+              <div className="grid grid-cols-3 gap-x-8 gap-y-2 text-gray-400 text-sm min-w-[300px] md:min-w-[450px]">
                 <ul className="space-y-2">
                   <li>Pasang Roster</li>
                   <li>Plafon Akustik</li>
