@@ -235,7 +235,7 @@ export default function Home() {
                   <div>
                     <h4 className="font-bold text-xl mb-1">Telepon & WhatsApp</h4>
                     <p className="text-primary-foreground/70">Senin - Minggu, 08:00 - 17:00</p>
-                    <p className="text-white font-mono mt-1 text-lg">0812-3456-7890</p>
+                    <p className="text-white font-mono mt-1 text-lg">0811-8881-9865</p>
                   </div>
                 </div>
 
