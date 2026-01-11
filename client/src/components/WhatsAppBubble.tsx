@@ -2,7 +2,7 @@ import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function WhatsAppBubble() {
-  const whatsappNumber = "6281234567890"; // Replaced with a common ID format
+  const whatsappNumber = "6281188819865"; // Replaced with a common ID format
   const message = encodeURIComponent("Halo Ratunda, saya ingin berkonsultasi mengenai renovasi rumah.");
   
   const handleClick = () => {
