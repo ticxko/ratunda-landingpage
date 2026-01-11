@@ -1,7 +1,13 @@
 import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
+
+interface MarqueeItem {
+  text: string;
+  icon: LucideIcon;
+}
 
 interface MarqueeProps {
-  items: string[];
+  items: MarqueeItem[];
   className?: string;
 }
 
@@ -12,16 +18,18 @@ export function Marquee({ items, className }: MarqueeProps) {
         {/* Render items twice to create seamless loop */}
         {[...items, ...items].map((item, idx) => (
           <div
-            key={`${item}-${idx}`}
+            key={`${item.text}-${idx}`}
             className="
               mx-4 px-6 py-2 rounded-full
               bg-white border border-primary/10 text-primary
               font-medium text-sm md:text-base shadow-sm
               hover:bg-primary hover:text-white hover:shadow-md
               transition-all duration-300 cursor-default
+              flex items-center gap-2
             "
           >
-            {item}
+            <item.icon className="w-4 h-4 md:w-5 md:h-5" />
+            {item.text}
           </div>
         ))}
       </div>

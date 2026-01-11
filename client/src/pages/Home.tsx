@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import { 
   CloudRain, Droplets, Zap, ChefHat, Bath, 
-  Tent, Armchair, Wind, BrickWall, ArrowRight, Phone, CheckCircle2
+  Tent, Armchair, Wind, BrickWall, ArrowRight, Phone, CheckCircle2,
+  LayoutGrid, PanelsTopLeft, Layers, Maximize, Sun, Construction, 
+  TreePine, Square, Waves, Thermometer, UtensilsCrossed
 } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Marquee } from "@/components/Marquee";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Button } from "@/components/ui/button";
+import { WhatsAppBubble } from "@/components/WhatsAppBubble";
 import heroImg from "@assets/hero_image.png"; 
 
 // Service Data
@@ -23,10 +26,18 @@ const services = [
 ];
 
 const specialties = [
-  "Pasang Roster", "Plafon Akustik", "Dinding Panel", 
-  "Secondary Skin Wall", "Lantai Mezzanine", "Skylight", 
-  "Struktur Baja", "Pembuatan Taman", "Jendela Aluminium", 
-  "Atap Bitumen", "Pasang Water Heater", "Pembuatan Meja Makan"
+  { text: "Pasang Roster", icon: LayoutGrid },
+  { text: "Plafon Akustik", icon: Waves },
+  { text: "Dinding Panel", icon: PanelsTopLeft },
+  { text: "Secondary Skin Wall", icon: Layers },
+  { text: "Lantai Mezzanine", icon: Maximize },
+  { text: "Skylight", icon: Sun },
+  { text: "Struktur Baja", icon: Construction },
+  { text: "Pembuatan Taman", icon: TreePine },
+  { text: "Jendela Aluminium", icon: Square },
+  { text: "Atap Bitumen", icon: Tent },
+  { text: "Pasang Water Heater", icon: Thermometer },
+  { text: "Pembuatan Meja Makan", icon: UtensilsCrossed },
 ];
 
 export default function Home() {
@@ -36,6 +47,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden font-body">
+      <WhatsAppBubble />
       
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
