@@ -25,8 +25,8 @@ export function Marquee({ items, className, direction = "left", speed = "medium"
   return (
     <div className={cn("relative flex overflow-hidden w-full py-2", className)}>
       <div className={cn("flex whitespace-nowrap pause-on-hover", speedClass, directionClass)}>
-        {/* Render items twice to create seamless loop */}
-        {[...items, ...items].map((item, idx) => (
+        {/* Render items multiple times to create seamless endless loop */}
+        {[...items, ...items, ...items, ...items].map((item, idx) => (
           <div
             key={`${item.text}-${idx}`}
             className="
