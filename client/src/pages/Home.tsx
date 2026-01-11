@@ -104,7 +104,7 @@ export default function Home() {
                   onClick={scrollToContact}
                   className="h-14 px-8 rounded-full text-lg font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
                 >
-                  Konsultasi Gratis <ArrowRight className="ml-2 w-5 h-5" />
+                  Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
                 <Button 
                   variant="outline"

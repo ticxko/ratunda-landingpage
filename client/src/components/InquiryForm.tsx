@@ -51,7 +51,7 @@ export function InquiryForm() {
       className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-black/5 border border-border/50"
     >
       <div className="mb-8">
-        <h3 className="text-2xl font-bold font-display text-primary mb-2">Konsultasi Gratis</h3>
+        <h3 className="text-2xl font-bold font-display text-primary mb-2">Konsultasi Gratis Sekarang</h3>
         <p className="text-muted-foreground">Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda.</p>
       </div>
 
