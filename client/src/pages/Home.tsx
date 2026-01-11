@@ -207,7 +207,11 @@ export default function Home() {
             Spesialisasi Konstruksi Lainnya
           </h3>
         </div>
-        <Marquee items={specialties} />
+        <div className="space-y-4">
+          <Marquee items={specialties.slice(0, 4)} />
+          <Marquee items={specialties.slice(4, 8)} className="bg-secondary/5" />
+          <Marquee items={specialties.slice(8)} />
+        </div>
       </section>
 
       {/* Contact Section */}

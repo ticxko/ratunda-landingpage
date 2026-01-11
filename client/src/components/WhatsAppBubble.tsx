@@ -10,17 +10,17 @@ export function WhatsAppBubble() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100]">
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3 pointer-events-none">
+      <div className="bg-white text-foreground px-4 py-3 rounded-2xl text-sm font-bold shadow-2xl border border-gray-100 max-w-[200px] animate-in fade-in slide-in-from-bottom-2 duration-500">
+        Hubungi dan sampaikan ke kami rencana Anda
+      </div>
       <Button
         onClick={handleClick}
         size="icon"
-        className="h-14 w-14 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-2xl hover:scale-110 transition-all duration-300 border-none group"
+        className="h-14 w-14 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-2xl hover:scale-110 transition-all duration-300 border-none group pointer-events-auto"
         title="Chat via WhatsApp"
       >
         <MessageCircle className="h-8 w-8 fill-current" />
-        <span className="absolute right-full mr-4 bg-white text-foreground px-3 py-1.5 rounded-lg text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-gray-100">
-          Chat WhatsApp
-        </span>
       </Button>
     </div>
   );
