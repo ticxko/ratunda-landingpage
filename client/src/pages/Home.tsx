@@ -207,7 +207,7 @@ export default function Home() {
             Spesialisasi Konstruksi Lainnya
           </h3>
         </div>
-        <div className="bg-primary/5 py-4">
+        <div className="bg-primary/5 py-8 space-y-6">
           <Marquee items={specialties.slice(0, 4)} speed="fast" />
           <Marquee items={specialties.slice(4, 8)} direction="right" speed="fast" />
           <Marquee items={specialties.slice(8)} speed="fast" />
