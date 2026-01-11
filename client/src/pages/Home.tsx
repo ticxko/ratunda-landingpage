@@ -10,7 +10,7 @@ import { Marquee } from "@/components/Marquee";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Button } from "@/components/ui/button";
 import { WhatsAppBubble } from "@/components/WhatsAppBubble";
-import logoImg from "@assets/01_Ratunda_-_Primary_Logo_1768104499437.png";
+import logoImg from "@assets/01_Ratunda_-_Primary_Logo_crop_1768105271103.png";
 
 // Service Data
 const services = [
