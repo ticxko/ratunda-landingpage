@@ -110,7 +110,7 @@ export default function Home() {
                   variant="outline"
                   className="h-14 px-8 rounded-full text-lg font-semibold border-2 border-border hover:bg-gray-50 text-foreground"
                 >
-                  <Phone className="mr-2 w-5 h-5" /> 0812-3456-7890
+                  <Phone className="mr-2 w-5 h-5" /> 0811-8881-9865
                 </Button>
               </div>
 
