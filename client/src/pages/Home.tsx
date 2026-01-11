@@ -202,14 +202,14 @@ export default function Home() {
 
       {/* Marquee Section */}
       <section className="py-12 border-y border-gray-100 bg-white">
-        <div className="container mx-auto px-4 md:px-6 mb-8 text-center">
+        <div className="container mx-auto px-4 md:px-6 mb-6 text-center">
           <h3 className="text-xl md:text-2xl font-bold font-display text-foreground">
             Spesialisasi Konstruksi Lainnya
           </h3>
         </div>
-        <div className="space-y-4">
+        <div className="bg-primary/5 py-4">
           <Marquee items={specialties.slice(0, 4)} speed="fast" />
-          <Marquee items={specialties.slice(4, 8)} className="bg-secondary/5" direction="right" speed="fast" />
+          <Marquee items={specialties.slice(4, 8)} direction="right" speed="fast" />
           <Marquee items={specialties.slice(8)} speed="fast" />
         </div>
       </section>

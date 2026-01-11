@@ -23,22 +23,22 @@ export function Marquee({ items, className, direction = "left", speed = "medium"
   const directionClass = direction === "right" ? "direction-reverse" : "";
 
   return (
-    <div className={cn("relative flex overflow-hidden w-full py-8 bg-primary/5", className)}>
+    <div className={cn("relative flex overflow-hidden w-full py-2", className)}>
       <div className={cn("flex whitespace-nowrap pause-on-hover", speedClass, directionClass)}>
         {/* Render items twice to create seamless loop */}
         {[...items, ...items].map((item, idx) => (
           <div
             key={`${item.text}-${idx}`}
             className="
-              mx-4 px-6 py-2 rounded-full
+              mx-2 px-4 py-1.5 rounded-full
               bg-white border border-primary/10 text-primary
-              font-medium text-sm md:text-base shadow-sm
+              font-medium text-xs md:text-sm shadow-sm
               hover:bg-primary hover:text-white hover:shadow-md
               transition-all duration-300 cursor-default
               flex items-center gap-2
             "
           >
-            <item.icon className="w-4 h-4 md:w-5 md:h-5" />
+            <item.icon className="w-3.5 h-3.5 md:w-4 h-4" />
             {item.text}
           </div>
         ))}
