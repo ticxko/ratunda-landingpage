@@ -51,10 +51,10 @@ export default function Home() {
       <WhatsAppBubble />
       
       {/* Navigation */}
-      <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <nav className="fixed w-full top-0 z-50 bg-[#0b142e]/80 backdrop-blur-md border-b border-white/5">
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={logoImg} alt="Ratunda" className="h-10 w-auto" />
+            <img src={logoImg} alt="Ratunda" className="h-10 w-auto brightness-0 invert" />
           </div>
           <Button 
             onClick={scrollToContact}
@@ -66,10 +66,10 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#0b142e]">
         {/* Abstract Background Shapes */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#734375]/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#004d26]/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -81,50 +81,50 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="lg:pr-10"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent-foreground font-semibold text-xs mb-4 border border-accent/20">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-accent-foreground font-semibold text-xs mb-4 border border-accent/30 backdrop-blur-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                 </span>
-                Jasa Renovasi Terpercaya
+                <span className="text-white/90">Jasa Renovasi Terpercaya</span>
               </div>
               
-              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-display text-foreground leading-[1.1] mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-display text-white leading-[1.1] mb-4">
                 Solusi Renovasi <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">
                   Rumah & Konstruksi
                 </span>
                 <br /> Modern
               </h1>
               
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-md">
+              <p className="text-base md:text-lg text-white/70 leading-relaxed mb-6 max-w-md">
                 Wujudkan hunian impian Anda dengan layanan profesional, transparan, dan hasil berkualitas tinggi di seluruh Indonesia.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button 
                   onClick={scrollToContact}
-                  className="h-12 px-6 rounded-full text-base font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
+                  className="h-12 px-6 rounded-full text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
                 >
                   Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
                 <Button 
                   variant="outline"
-                  className="h-12 px-6 rounded-full text-base font-semibold border-2 border-border hover:bg-gray-50 text-foreground"
+                  className="h-12 px-6 rounded-full text-base font-semibold border-2 border-white/20 hover:bg-white/10 text-white"
                 >
                   <Phone className="mr-2 w-4 h-4" /> 0811-8881-9865
                 </Button>
               </div>
 
-              <div className="mt-8 flex items-center gap-4 text-xs font-medium text-muted-foreground">
+              <div className="mt-8 flex items-center gap-4 text-xs font-medium text-white/50">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-secondary" /> Bergaransi
+                  <CheckCircle2 className="w-5 h-5 text-accent" /> Bergaransi
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-secondary" /> Tepat Waktu
+                  <CheckCircle2 className="w-5 h-5 text-accent" /> Tepat Waktu
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-secondary" /> Profesional
+                  <CheckCircle2 className="w-5 h-5 text-accent" /> Profesional
                 </div>
               </div>
             </motion.div>
