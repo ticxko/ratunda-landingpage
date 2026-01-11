@@ -30,15 +30,15 @@ export function Marquee({ items, className, direction = "left", speed = "medium"
           <div
             key={`${item.text}-${idx}`}
             className="
-              mx-2 px-4 py-1.5 rounded-full
+              mx-3 px-6 py-2.5 rounded-full
               bg-white border border-primary/10 text-primary
-              font-medium text-xs md:text-sm shadow-sm
-              hover:bg-primary hover:text-white hover:shadow-md
+              font-bold text-sm md:text-lg shadow-md
+              hover:bg-primary hover:text-white hover:shadow-lg
               transition-all duration-300 cursor-default
-              flex items-center gap-2
+              flex items-center gap-3
             "
           >
-            <item.icon className="w-3.5 h-3.5 md:w-4 h-4" />
+            <item.icon className="w-5 h-5 md:w-6 h-6" />
             {item.text}
           </div>
         ))}
