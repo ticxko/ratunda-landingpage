@@ -313,7 +313,7 @@ export default function Home() {
             </div>
           </div>
           <div className="pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
-            © 2024 Ratunda. All rights reserved.
+            © 2026 Ratunda Renovasi. PT. Pencipta Organik Imaji. All rights reserved.
           </div>
         </div>
       </footer>
