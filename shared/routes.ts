@@ -15,7 +15,7 @@ export const api = {
   inquiries: {
     create: {
       method: 'POST' as const,
-      path: '/api/inquiries',
+      path: 'https://ratunda.app.n8n.cloud/webhook-test/394df293-3edc-43e3-92ee-35f9d1d422d6',
       input: insertInquirySchema,
       responses: {
         201: z.custom<typeof inquiries.$inferSelect>(),
