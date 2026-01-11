@@ -12,7 +12,7 @@ export function WhatsAppBubble() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3 pointer-events-none">
       <div className="bg-white text-foreground px-4 py-3 rounded-2xl text-sm font-bold shadow-2xl border border-gray-100 max-w-[200px] animate-in fade-in slide-in-from-bottom-2 duration-500">
-        Hubungi dan sampaikan ke kami rencana Anda
+        Hubungi kami dan sampaikan rencana Anda
       </div>
       <Button
         onClick={handleClick}
