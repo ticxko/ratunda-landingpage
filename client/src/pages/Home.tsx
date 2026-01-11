@@ -3,7 +3,7 @@ import {
   CloudRain, Droplets, Zap, ChefHat, Bath, 
   Tent, Armchair, Wind, BrickWall, ArrowRight, Phone, CheckCircle2,
   LayoutGrid, PanelsTopLeft, Layers, Maximize, Sun, Construction, 
-  TreePine, Square, Waves, Thermometer, UtensilsCrossed
+  TreePine, Square, Waves, Thermometer, UtensilsCrossed, Instagram
 } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Marquee } from "@/components/Marquee";
@@ -265,11 +265,20 @@ export default function Home() {
       <footer className="bg-foreground text-white py-12 border-t border-white/10">
         <div className="container mx-auto px-4 md:px-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row flex-wrap justify-between gap-12 mb-12">
-            <div className="max-w-xs">
-              <img src={logoImg} alt="Ratunda" className="h-12 w-auto mb-6 brightness-0 invert" />
-              <p className="text-gray-400 text-sm">
+            <div className="max-w-xs text-center md:text-left">
+              <img src={logoImg} alt="Ratunda" className="h-12 w-auto mb-6 brightness-0 invert mx-auto md:mx-0" />
+              <p className="text-gray-400 text-sm mb-4">
                 Partner terpercaya untuk segala kebutuhan konstruksi dan renovasi rumah Anda. Mengutamakan kualitas dan kepuasan pelanggan.
               </p>
+              <a 
+                href="https://instagram.com/ratunda.id" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-gray-400 hover:text-accent transition-colors text-sm"
+              >
+                <Instagram className="w-4 h-4" />
+                <span>@ratunda.id</span>
+              </a>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-accent">Layanan Trending</h4>
