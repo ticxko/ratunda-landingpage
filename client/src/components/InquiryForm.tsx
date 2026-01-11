@@ -67,7 +67,7 @@ export function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="John Doe" 
-                      className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all" 
+                      className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all placeholder:text-gray-500 text-gray-900" 
                       {...field} 
                     />
                   </FormControl>
@@ -85,7 +85,7 @@ export function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="0812..." 
-                      className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all"
+                      className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all placeholder:text-gray-500 text-gray-900"
                       {...field} 
                     />
                   </FormControl>
@@ -105,7 +105,7 @@ export function InquiryForm() {
                   <Input 
                     placeholder="email@example.com" 
                     type="email"
-                    className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all"
+                    className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all placeholder:text-gray-500 text-gray-900"
                     {...field} 
                   />
                 </FormControl>
@@ -122,7 +122,7 @@ export function InquiryForm() {
                 <FormLabel className="font-semibold text-foreground/80">Jenis Layanan</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all">
+                    <SelectTrigger className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all text-gray-900 data-[placeholder]:text-gray-500">
                       <SelectValue placeholder="Pilih layanan yang Anda butuhkan" />
                     </SelectTrigger>
                   </FormControl>
@@ -146,7 +146,7 @@ export function InquiryForm() {
                 <FormControl>
                   <Textarea 
                     placeholder="Jelaskan detail renovasi atau perbaikan yang Anda inginkan..." 
-                    className="min-h-[120px] rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all resize-none p-4"
+                    className="min-h-[120px] rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all resize-none p-4 placeholder:text-gray-500 text-gray-900"
                     {...field} 
                   />
                 </FormControl>
