@@ -126,9 +126,9 @@ export function InquiryForm() {
                       <SelectValue placeholder="Pilih layanan yang Anda butuhkan" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-white border-gray-200 shadow-xl z-[100]">
                     {serviceOptions.map((option) => (
-                      <SelectItem key={option} value={option}>{option}</SelectItem>
+                      <SelectItem key={option} value={option} className="hover:bg-gray-100 cursor-pointer">{option}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
