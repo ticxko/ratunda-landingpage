@@ -18,6 +18,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5000
+      - ENVIRONMENT=prod-kvm4
       - DATABASE_URL=postgres://postgres:postgre@ouhnqf2iou34123fasdf@db:5432/ratunda
     depends_on:
       - db
