@@ -11,6 +11,7 @@ import { InquiryForm } from "@/components/InquiryForm";
 import { Button } from "@/components/ui/button";
 import { WhatsAppBubble } from "@/components/WhatsAppBubble";
 import logoImg from "@assets/01_Ratunda_-_Primary_Logo_crop_1768105271103.png";
+import heroImg from "@assets/supergrafis_1768108685140.png";
 
 // Service Data
 const services = [
@@ -134,16 +135,11 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="relative"
             >
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20 border-8 border-white">
-                {/* 
-                  Using placeholder image for now as requested. 
-                  In production, replace src with: heroImg 
-                */}
-                {/* HTML comment: modern minimalist house exterior renovation */}
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20">
                 <img 
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
-                  alt="Modern Home Renovation" 
-                  className="w-full h-[500px] object-cover"
+                  src={heroImg}
+                  alt="Modern Home Renovation Supergraphic" 
+                  className="w-full h-auto object-contain"
                 />
                 
                 {/* Floating Badge */}
