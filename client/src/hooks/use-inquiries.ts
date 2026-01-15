@@ -13,7 +13,10 @@ export function useCreateInquiry() {
       const res = await fetch(api.inquiries.create.path, {
         method: api.inquiries.create.method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validated),
+        body: JSON.stringify({
+          ...validated,
+          timestamp: new Date().toISOString(),
+        }),
       });
 
       if (!res.ok) {
