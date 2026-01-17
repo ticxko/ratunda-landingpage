@@ -39,4 +39,4 @@ jobs:
       - name: Run docker-compose on server
         run: |
           ssh -i ~/.ssh/deploy_key -p "${{ secrets.DEPLOY_PORT }}" "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" \
-            "cd /home/${{ secrets.DEPLOY_USER }}/ratunda-landingpage && docker compose down && docker compose build --no-cache && docker compose up -d"
+            "cd /home/${{ secrets.DEPLOY_USER }}/ratunda-landingpage && docker compose down web && docker compose build --no-cache && docker compose up -d"
