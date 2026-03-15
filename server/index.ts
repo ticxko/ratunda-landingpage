@@ -61,6 +61,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// Return 410 Gone for old site URLs that Google still has in its index.
+// These are from a previous admin dashboard template that was hosted on ratunda.id.
+const oldSitePrefixes = [
+  "/auth", "/front-page", "/forms", "/tables", "/widgets",
+  "/pages", "/charts", "/ui-elements", "/components",
+];
+app.use((req, res, next) => {
+  if (oldSitePrefixes.some((prefix) => req.path.startsWith(prefix))) {
+    return res.status(410).send("Gone");
+  }
+  next();
+});
+
 (async () => {
   await registerRoutes(httpServer, app);
 

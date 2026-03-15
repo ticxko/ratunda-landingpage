@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /auth/
+Disallow: /front-page/
+Disallow: /forms/
+Disallow: /tables/
+Disallow: /widgets/
+Disallow: /pages/
+Disallow: /charts/
+Disallow: /ui-elements/
+Disallow: /components/
 
 Sitemap: https://ratunda.id/sitemap.xml
