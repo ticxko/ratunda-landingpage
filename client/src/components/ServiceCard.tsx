@@ -5,9 +5,10 @@ interface ServiceCardProps {
   title: string;
   icon: LucideIcon;
   delay?: number;
+  onClick?: () => void;
 }
 
-export function ServiceCard({ title, icon: Icon, delay = 0 }: ServiceCardProps) {
+export function ServiceCard({ title, icon: Icon, delay = 0, onClick }: ServiceCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -15,11 +16,12 @@ export function ServiceCard({ title, icon: Icon, delay = 0 }: ServiceCardProps) 
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
       whileHover={{ y: -5 }}
+      onClick={onClick}
       className="
         group flex flex-col items-center justify-center p-6
         bg-white rounded-2xl border border-gray-100
         shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20
-        transition-all duration-300 cursor-default
+        transition-all duration-300 cursor-pointer
       "
     >
       <div className="

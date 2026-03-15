@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   CloudRain, Droplets, Zap, ChefHat, Bath,
   Tent, Armchair, Wind, BrickWall, ArrowRight, Phone, CheckCircle2,
   LayoutGrid, PanelsTopLeft, Layers, Maximize, Sun, Construction,
   TreePine, Square, Waves, Thermometer, UtensilsCrossed, Instagram,
-  MessageSquare, ClipboardCheck, HardHat, ThumbsUp
+  MessageSquare, ClipboardCheck, HardHat, ThumbsUp,
+  Shield, Eye, Users, Clock, Star, Quote
 } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Marquee } from "@/components/Marquee";
@@ -17,17 +19,17 @@ import p1 from "@assets/crop-bon_1768110247720.jpg";
 import p2 from "@assets/crop-wan_1768110247720.jpg";
 import p3 from "@assets/crop-deb_1768110247721.jpg";
 
-// Service Data
+// Service Data — formValue maps to InquiryForm serviceOptions
 const services = [
-  { title: "Atap Bocor", icon: CloudRain },
-  { title: "Dinding Lembab", icon: Droplets },
-  { title: "Tarik Listrik", icon: Zap },
-  { title: "Renovasi Dapur", icon: ChefHat },
-  { title: "Renovasi Kamar Mandi", icon: Bath },
-  { title: "Pasang Kanopi", icon: Tent },
-  { title: "Bikin Furniture", icon: Armchair },
-  { title: "Pasang AC", icon: Wind },
-  { title: "Cor Dak Beton", icon: BrickWall },
+  { title: "Atap Bocor", icon: CloudRain, formValue: "Atap Bocor" },
+  { title: "Dinding Lembab", icon: Droplets, formValue: "Dinding Lembab" },
+  { title: "Tarik Listrik", icon: Zap, formValue: "Tarik Listrik" },
+  { title: "Renovasi Dapur", icon: ChefHat, formValue: "Renovasi Dapur" },
+  { title: "Renovasi Kamar Mandi", icon: Bath, formValue: "Renovasi Kamar Mandi" },
+  { title: "Pasang Kanopi", icon: Tent, formValue: "Pasang Kanopi" },
+  { title: "Bikin Furniture", icon: Armchair, formValue: "Pembuatan Furniture" },
+  { title: "Pasang AC", icon: Wind, formValue: "Pasang AC" },
+  { title: "Cor Dak Beton", icon: BrickWall, formValue: "Cor Dak Beton" },
 ];
 
 const specialties = [
@@ -46,7 +48,10 @@ const specialties = [
 ];
 
 export default function Home() {
-  const scrollToContact = () => {
+  const [selectedService, setSelectedService] = useState("");
+
+  const scrollToContact = (service?: string) => {
+    if (service) setSelectedService(service);
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -90,34 +95,34 @@ export default function Home() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                 </span>
-                <span className="text-white/90">Jasa Renovasi Terpercaya</span>
+                <span className="text-white/90">One Project, One Architect In-Charge</span>
               </div>
-              
+
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-display text-white leading-[1.1] mb-4">
-                Solusi Renovasi <br />
+                Renovasi Rumah <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">
-                  Rumah & Konstruksi
+                  Dipimpin Arsitek,
                 </span>
-                <br /> Modern
+                <br /> Bukan Cuma Tukang
               </h1>
-              
+
               <p className="text-base md:text-lg text-white/70 leading-relaxed mb-6 max-w-md">
-                Wujudkan hunian impian Anda dengan layanan profesional, transparan, dan hasil berkualitas tinggi di seluruh Indonesia.
+                Capek kerjaan renovasi nggak sesuai ekspektasi? Di Ratunda, setiap proyek dipimpin arsitek berpengalaman dengan harga transparan via RAB — bukan estimasi asal-asalan.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button 
-                  onClick={scrollToContact}
+                <Button
+                  onClick={() => scrollToContact()}
                   className="h-12 px-6 rounded-full text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
                 >
                   Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-                <Button 
-                  variant="outline"
-                  className="h-12 px-6 rounded-full text-base font-semibold border-2 border-white/20 hover:bg-white/10 text-white"
+                <a
+                  href="tel:+6281188819865"
+                  className="inline-flex items-center justify-center h-12 px-6 rounded-full text-base font-semibold border-2 border-white/20 hover:bg-white/10 text-white transition-all duration-200"
                 >
                   <Phone className="mr-2 w-4 h-4" /> 0811-8881-9865
-                </Button>
+                </a>
               </div>
 
               <div className="mt-8 flex items-center gap-4 text-xs font-medium text-white/50">
@@ -125,10 +130,10 @@ export default function Home() {
                   <CheckCircle2 className="w-5 h-5 text-accent" /> Bergaransi
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent" /> Tepat Waktu
+                  <CheckCircle2 className="w-5 h-5 text-accent" /> Harga Transparan
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent" /> Profesional
+                  <CheckCircle2 className="w-5 h-5 text-accent" /> Dipimpin Arsitek
                 </div>
               </div>
             </motion.div>
@@ -185,11 +190,12 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
             {services.map((service, index) => (
-              <ServiceCard 
+              <ServiceCard
                 key={index}
                 title={service.title}
                 icon={service.icon}
                 delay={index * 0.1}
+                onClick={() => scrollToContact(service.formValue)}
               />
             ))}
           </div>
@@ -286,6 +292,136 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Ratunda Section */}
+      <section className="py-20 bg-gray-50/50">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary font-bold tracking-wider uppercase text-sm">Kenapa Ratunda?</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
+              Bukan Sekadar Tukang, <br /> Tapi Partner Renovasi Anda
+            </h2>
+            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                icon: Users,
+                title: "Dipimpin Arsitek",
+                desc: "Setiap proyek diawasi langsung oleh arsitek berpengalaman dari Poiesis — biro arsitektur dengan pengalaman 10+ tahun.",
+              },
+              {
+                icon: Eye,
+                title: "Harga Transparan",
+                desc: "RAB (Rencana Anggaran Biaya) detail sebelum mulai kerja. Tidak ada biaya tersembunyi atau scope creep tanpa persetujuan.",
+              },
+              {
+                icon: Clock,
+                title: "Update Harian via WA",
+                desc: "Grup WhatsApp khusus proyek Anda. Laporan progres dan biaya setiap hari — Anda selalu tahu perkembangannya.",
+              },
+              {
+                icon: Shield,
+                title: "Bergaransi",
+                desc: "Garansi pekerjaan untuk ketenangan jangka panjang. Jika ada masalah setelah selesai, kami yang tangani.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-lg font-bold font-display text-foreground mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary font-bold tracking-wider uppercase text-sm">Testimoni</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
+              Apa Kata Klien Kami
+            </h2>
+            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                name: "Ibu Sarah",
+                location: "Kemang, Jakarta Selatan",
+                service: "Renovasi Dapur",
+                text: "Sangat puas dengan hasilnya! Arsitek dari Ratunda sangat detail dan komunikatif. Update progres via WA setiap hari bikin saya tenang meskipun lagi di kantor.",
+                rating: 5,
+              },
+              {
+                name: "Pak Budi",
+                location: "BSD, Tangerang Selatan",
+                service: "Atap Bocor & Plafon",
+                text: "Sudah coba 2 tukang sebelumnya tapi bocor terus. Ratunda survei dulu, kasih RAB jelas, lalu kerjain. Sekarang sudah 6 bulan tidak bocor lagi.",
+                rating: 5,
+              },
+              {
+                name: "Ibu Rina",
+                location: "Cibubur, Bekasi",
+                service: "Cor Dak Beton Lantai 2",
+                text: "Proyek besar tapi terkoordinasi dengan baik. Ada arsitek yang ngawasin jadi kualitas terjamin. Harga sesuai RAB, tidak ada biaya tambahan mendadak.",
+                rating: 5,
+              },
+            ].map((testimonial, index) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-100 relative"
+              >
+                <Quote className="w-8 h-8 text-accent/30 mb-3" />
+                <div className="flex gap-1 mb-3">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  "{testimonial.text}"
+                </p>
+                <div className="border-t border-gray-200 pt-4">
+                  <p className="font-bold text-foreground text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-gray-400">{testimonial.location} — {testimonial.service}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="text-center mt-10"
+          >
+            <Button
+              onClick={() => scrollToContact()}
+              className="h-12 px-8 rounded-full text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
+            >
+              Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Marquee Section */}
       <section className="py-12 border-y border-gray-100 bg-white">
         <div className="container mx-auto px-4 md:px-6 mb-6 text-center">
@@ -346,7 +482,7 @@ export default function Home() {
 
             {/* Form */}
             <div className="w-full">
-              <InquiryForm />
+              <InquiryForm selectedService={selectedService} />
             </div>
           </div>
         </div>

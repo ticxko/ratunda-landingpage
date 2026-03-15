@@ -1,3 +1,4 @@
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertInquirySchema, type InsertInquiry } from "@shared/schema";
@@ -7,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const serviceOptions = [
@@ -23,9 +24,13 @@ const serviceOptions = [
   "Lainnya"
 ];
 
-export function InquiryForm() {
+interface InquiryFormProps {
+  selectedService?: string;
+}
+
+export function InquiryForm({ selectedService }: InquiryFormProps) {
   const mutation = useCreateInquiry();
-  
+
   const form = useForm<InsertInquiry>({
     resolver: zodResolver(insertInquirySchema),
     defaultValues: {
@@ -36,6 +41,13 @@ export function InquiryForm() {
       message: "",
     },
   });
+
+  // Update service type when a service card is clicked
+  React.useEffect(() => {
+    if (selectedService) {
+      form.setValue("serviceType", selectedService);
+    }
+  }, [selectedService, form]);
 
   function onSubmit(data: InsertInquiry) {
     mutation.mutate(data, {
@@ -120,7 +132,7 @@ export function InquiryForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="font-semibold text-foreground/80">Jenis Layanan</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-primary/50 transition-all text-gray-900 data-[placeholder]:text-gray-500">
                       <SelectValue placeholder="Pilih layanan yang Anda butuhkan" />
@@ -155,8 +167,8 @@ export function InquiryForm() {
             )}
           />
 
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={mutation.isPending}
             className="
               w-full h-14 rounded-xl font-bold text-lg
@@ -176,6 +188,12 @@ export function InquiryForm() {
               </>
             )}
           </Button>
+
+          <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-400">
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> Konsultasi gratis</span>
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> Tanpa komitmen</span>
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> Respon cepat</span>
+          </div>
         </form>
       </Form>
     </motion.div>
