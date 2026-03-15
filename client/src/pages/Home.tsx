@@ -6,7 +6,7 @@ import {
   LayoutGrid, PanelsTopLeft, Layers, Maximize, Sun, Construction,
   TreePine, Square, Waves, Thermometer, UtensilsCrossed, Instagram,
   MessageSquare, ClipboardCheck, HardHat, ThumbsUp,
-  Shield, Eye, Users, Clock, Star, Quote
+  Shield, Eye, Users, Clock, Star, Quote, ChevronDown
 } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Marquee } from "@/components/Marquee";
@@ -46,6 +46,30 @@ const specialties = [
   { text: "Pasang Water Heater", icon: Thermometer },
   { text: "Pembuatan Meja Makan", icon: UtensilsCrossed },
 ];
+
+function FaqItem({ question, answer, index }: { question: string; answer: string; index: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between p-5 md:p-6 text-left gap-4"
+      >
+        <span className="font-bold font-display text-foreground text-base md:text-lg">{question}</span>
+        <ChevronDown className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 pb-5 md:pb-6" : "max-h-0"}`}>
+        <p className="px-5 md:px-6 text-sm md:text-base text-gray-500 leading-relaxed">{answer}</p>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState("");
@@ -419,6 +443,50 @@ export default function Home() {
               Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50/50">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary font-bold tracking-wider uppercase text-sm">FAQ</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
+              Pertanyaan yang Sering Ditanyakan
+            </h2>
+            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-3">
+            {[
+              {
+                q: "Berapa biaya renovasi rumah di Jakarta?",
+                a: "Biaya renovasi rumah bervariasi tergantung jenis pekerjaan, luas area, dan material yang digunakan. Di Ratunda, kami memberikan RAB (Rencana Anggaran Biaya) detail setelah survei lokasi gratis, sehingga Anda tahu persis biaya sebelum pekerjaan dimulai. Tidak ada biaya tersembunyi.",
+              },
+              {
+                q: "Apakah Ratunda melayani area di luar Jakarta?",
+                a: "Ya, Ratunda melayani seluruh wilayah Jabodetabek (Jakarta, Bogor, Depok, Tangerang, Bekasi) dan kota-kota besar lainnya di Indonesia. Hubungi kami untuk konfirmasi ketersediaan di lokasi Anda.",
+              },
+              {
+                q: "Apa bedanya Ratunda dengan jasa tukang biasa?",
+                a: "Di Ratunda, setiap proyek dipimpin oleh arsitek berpengalaman dengan konsep 'One Project, One Architect In-Charge'. Arsitek kami mengawasi langsung pekerjaan tukang dan mandor di lapangan, memberikan konsultasi teknis, serta memastikan kualitas sesuai standar. Ratunda adalah sister company dari Poiesis, biro arsitektur dengan pengalaman lebih dari 10 tahun.",
+              },
+              {
+                q: "Berapa lama waktu pengerjaan renovasi rumah?",
+                a: "Durasi pengerjaan tergantung skala proyek. Perbaikan ringan seperti atap bocor bisa selesai dalam 1-3 hari. Renovasi kamar mandi atau dapur sekitar 2-4 minggu. Proyek besar seperti cor dak beton atau penambahan lantai bisa memakan waktu 1-3 bulan. Timeline detail akan tercantum dalam RAB sebelum pekerjaan dimulai.",
+              },
+              {
+                q: "Apakah ada garansi untuk pekerjaan renovasi?",
+                a: "Ya, Ratunda memberikan garansi untuk setiap pekerjaan yang telah diselesaikan. Jika terdapat masalah setelah proyek selesai yang terkait dengan kualitas pengerjaan kami, tim Ratunda akan menanganinya tanpa biaya tambahan sesuai ketentuan garansi.",
+              },
+              {
+                q: "Bagaimana cara memulai konsultasi dengan Ratunda?",
+                a: "Anda bisa menghubungi kami melalui WhatsApp di 0811-8881-9865 atau mengisi formulir konsultasi di website kami. Tim kami akan merespons dalam waktu singkat, menjadwalkan survei lokasi gratis, dan memberikan RAB detail sebelum pekerjaan dimulai. Konsultasi awal sepenuhnya gratis dan tanpa komitmen.",
+              },
+            ].map((faq, index) => (
+              <FaqItem key={index} question={faq.q} answer={faq.a} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 
