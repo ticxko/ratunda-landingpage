@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { 
-  CloudRain, Droplets, Zap, ChefHat, Bath, 
+import {
+  CloudRain, Droplets, Zap, ChefHat, Bath,
   Tent, Armchair, Wind, BrickWall, ArrowRight, Phone, CheckCircle2,
-  LayoutGrid, PanelsTopLeft, Layers, Maximize, Sun, Construction, 
-  TreePine, Square, Waves, Thermometer, UtensilsCrossed, Instagram
+  LayoutGrid, PanelsTopLeft, Layers, Maximize, Sun, Construction,
+  TreePine, Square, Waves, Thermometer, UtensilsCrossed, Instagram,
+  MessageSquare, ClipboardCheck, HardHat, ThumbsUp
 } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Marquee } from "@/components/Marquee";
@@ -192,6 +193,96 @@ export default function Home() {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary font-bold tracking-wider uppercase text-sm">Cara Kerja Kami</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
+              4 Langkah Mudah Menuju <br /> Hunian Impian Anda
+            </h2>
+            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
+          </div>
+
+          <div className="relative max-w-6xl mx-auto">
+            {/* Connector line (desktop) */}
+            <div className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] border-t-2 border-dashed border-primary/25" />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+
+            {[
+              {
+                step: "01",
+                icon: MessageSquare,
+                title: "Konsultasi Gratis",
+                desc: "Hubungi kami via WhatsApp atau formulir. Ceritakan kebutuhan renovasi Anda — tim kami siap mendengarkan.",
+              },
+              {
+                step: "02",
+                icon: ClipboardCheck,
+                title: "Survei & Estimasi",
+                desc: "Tim ahli kami datang ke lokasi untuk survei, lalu memberikan estimasi biaya yang transparan dan detail.",
+              },
+              {
+                step: "03",
+                icon: HardHat,
+                title: "Pengerjaan Profesional",
+                desc: "Tukang berpengalaman mengerjakan proyek sesuai timeline yang disepakati, dengan update progres berkala.",
+              },
+              {
+                step: "04",
+                icon: ThumbsUp,
+                title: "Serah Terima & Garansi",
+                desc: "Proyek selesai, Anda puas. Kami berikan garansi pekerjaan untuk ketenangan jangka panjang Anda.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
+                className="relative z-10 flex flex-col items-center text-center"
+              >
+                {/* Step number + icon */}
+                <div className="relative mb-5">
+                  <div className="w-20 h-20 rounded-2xl bg-white border-2 border-primary/15 flex items-center justify-center shadow-sm">
+                    <item.icon className="w-9 h-9 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-accent text-accent-foreground text-xs font-bold flex items-center justify-center shadow-md">
+                    {item.step}
+                  </span>
+                </div>
+
+                <h3 className="text-lg font-bold font-display text-foreground mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-[250px] text-gray-500">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+          </div>
+
+          {/* CTA under steps */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="text-center mt-14"
+          >
+            <Button
+              onClick={scrollToContact}
+              className="h-12 px-8 rounded-full text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
+            >
+              Mulai Konsultasi Gratis <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </motion.div>
         </div>
       </section>
 

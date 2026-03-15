@@ -1,0 +1,1 @@
+../../../.agents/skills/social-content/SKILL.md

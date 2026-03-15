@@ -1,0 +1,1 @@
+../../../.agents/skills/email-sequence/SKILL.md
