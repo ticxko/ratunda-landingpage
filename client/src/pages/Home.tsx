@@ -58,7 +58,7 @@ export default function Home() {
       <nav className="fixed w-full top-0 z-50 bg-[#0b142e]/80 backdrop-blur-md border-b border-white/5">
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={logoImg} alt="Ratunda" className="h-10 w-auto brightness-0 invert" />
+            <img src={logoImg} alt="Ratunda Renovasi - Jasa Renovasi Rumah Jakarta" className="h-10 w-auto brightness-0 invert" />
           </div>
           <Button 
             onClick={scrollToContact}
@@ -143,7 +143,7 @@ export default function Home() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
                 <img 
                   src={heroImg}
-                  alt="Modern Home Renovation Supergraphic" 
+                  alt="Jasa renovasi rumah profesional Jakarta - Ratunda Renovasi" 
                   className="w-full h-auto scale-110 object-contain"
                 />
                 
@@ -157,7 +157,7 @@ export default function Home() {
                   <div className="flex items-center gap-4 mb-2">
                     <div className="flex -space-x-3">
                       {[p1, p2, p3].map((img, i) => (
-                        <img key={i} src={img} className="w-8 h-8 rounded-full border-2 border-white object-cover" />
+                        <img key={i} src={img} alt={`Tim arsitek Ratunda Renovasi ${i + 1}`} className="w-8 h-8 rounded-full border-2 border-white object-cover" />
                       ))}
                     </div>
                     <span className="font-bold text-gray-900">100+</span>
@@ -357,7 +357,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row flex-wrap justify-between gap-12 mb-12">
             <div className="max-w-xs text-center md:text-left">
-              <img src={logoImg} alt="Ratunda" className="h-12 w-auto mb-6 brightness-0 invert mx-auto md:mx-0" />
+              <img src={logoImg} alt="Ratunda Renovasi - Jasa Perbaikan dan Renovasi Rumah" className="h-12 w-auto mb-6 brightness-0 invert mx-auto md:mx-0" />
               <p className="text-gray-400 text-sm mb-4">
                 Partner terpercaya untuk segala kebutuhan konstruksi dan renovasi rumah Anda. Mengutamakan kualitas dan kepuasan pelanggan.
               </p>
