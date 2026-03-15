@@ -5,16 +5,19 @@ import { z } from "zod";
 export const inquiries = pgTable("inquiries", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  email: text("email").notNull(),
+  email: text("email"),
   phone: text("phone").notNull(),
-  serviceType: text("service_type").notNull(), // One of the services listed
-  message: text("message").notNull(),
+  serviceType: text("service_type").notNull(),
+  message: text("message"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const insertInquirySchema = createInsertSchema(inquiries).omit({ 
-  id: true, 
-  createdAt: true 
+export const insertInquirySchema = createInsertSchema(inquiries).omit({
+  id: true,
+  createdAt: true
+}).extend({
+  email: z.string().email().optional().or(z.literal("")),
+  message: z.string().optional().or(z.literal("")),
 });
 
 export type InsertInquiry = z.infer<typeof insertInquirySchema>;
