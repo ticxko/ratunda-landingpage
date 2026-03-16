@@ -4,6 +4,50 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import matter from "gray-matter";
+import { marked } from "marked";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const BLOG_DIR = path.join(__dirname, "..", "content", "blog");
+
+interface BlogPostMeta {
+  title: string;
+  slug: string;
+  description: string;
+  date: string;
+  author: string;
+  category: string;
+  keywords: string;
+  readTime: string;
+}
+
+function getBlogPosts(): BlogPostMeta[] {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
+  return files
+    .map((file) => {
+      const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
+      const { data } = matter(raw);
+      return data as BlogPostMeta;
+    })
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+function getBlogPost(slug: string): { meta: BlogPostMeta; html: string } | null {
+  if (!fs.existsSync(BLOG_DIR)) return null;
+  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
+  for (const file of files) {
+    const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
+    const { data, content } = matter(raw);
+    if (data.slug === slug) {
+      return { meta: data as BlogPostMeta, html: marked(content) as string };
+    }
+  }
+  return null;
+}
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "127.0.0.1",
@@ -29,6 +73,16 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  app.get("/api/blog", (_req, res) => {
+    res.json(getBlogPosts());
+  });
+
+  app.get("/api/blog/:slug", (req, res) => {
+    const post = getBlogPost(req.params.slug);
+    if (!post) return res.status(404).json({ message: "Post not found" });
+    res.json(post);
+  });
+
   app.post(api.inquiries.create.path, async (req, res) => {
     try {
       const input = api.inquiries.create.input.parse(req.body);
