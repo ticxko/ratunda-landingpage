@@ -34,6 +34,20 @@ function getBlogPosts(): BlogPostMeta[] {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
+// Unwrap <pre><code> blocks that marked misidentifies as code blocks when
+// HTML inside markdown is indented 4+ spaces after a blank line.
+function unescapeHTMLCodeBlocks(html: string): string {
+  return html.replace(/<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+    const decoded = code
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&amp;/g, "&");
+    return /^\s*<[a-zA-Z]/.test(decoded) ? decoded : match;
+  });
+}
+
 function getBlogPost(slug: string): { meta: BlogPostMeta; html: string } | null {
   if (!fs.existsSync(BLOG_DIR)) return null;
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
@@ -41,7 +55,7 @@ function getBlogPost(slug: string): { meta: BlogPostMeta; html: string } | null 
     const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
     const { data, content } = matter(raw);
     if (data.slug === slug) {
-      return { meta: data as BlogPostMeta, html: marked(content) as string };
+      return { meta: data as BlogPostMeta, html: unescapeHTMLCodeBlocks(marked(content) as string) };
     }
   }
   return null;
