@@ -141,8 +141,8 @@ export default function Home() {
                 >
                   Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-                <span className="inline-flex items-center justify-center h-12 px-6 rounded-full text-base font-semibold border-2 border-white/20 text-white">
-                  <Phone className="mr-2 w-4 h-4" /> 0811-8881-9865
+                <span className="inline-flex items-center justify-center h-12 px-6 rounded-full text-base font-semibold border-2 border-white/20 text-white whitespace-nowrap">
+                  <Phone className="mr-2 w-4 h-4 shrink-0" /> 0811-8881-9865
                 </span>
               </div>
 
