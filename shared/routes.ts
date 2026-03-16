@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { insertInquirySchema, inquiries } from './schema';
+import { insertInquirySchema, inquiries, type InsertInquiry } from './schema';
+export type { InsertInquiry };
 
 export const errorSchemas = {
   validation: z.object({
@@ -15,7 +16,7 @@ export const api = {
   inquiries: {
     create: {
       method: 'POST' as const,
-      path: 'https://ratunda.app.n8n.cloud/webhook/394df293-3edc-43e3-92ee-35f9d1d422d6',
+      path: '/api/inquiries',
       input: insertInquirySchema,
       responses: {
         201: z.custom<typeof inquiries.$inferSelect>(),

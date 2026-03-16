@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { api, type InsertInquiry } from "@shared/routes";
 import { useToast } from "@/hooks/use-toast";
 
@@ -13,10 +13,7 @@ export function useCreateInquiry() {
       const res = await fetch(api.inquiries.create.path, {
         method: api.inquiries.create.method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...validated,
-          timestamp: new Date().toISOString(),
-        }),
+        body: JSON.stringify(validated),
       });
 
       if (!res.ok) {
