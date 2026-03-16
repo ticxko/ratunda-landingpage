@@ -6,12 +6,10 @@ import { z } from "zod";
 import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 import matter from "gray-matter";
 import { marked } from "marked";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const BLOG_DIR = path.join(__dirname, "..", "content", "blog");
+const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
 interface BlogPostMeta {
   title: string;

@@ -16,9 +16,10 @@ FROM node:20-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
-# Only copy the built assets + package metadata
+# Only copy the built assets + package metadata + blog content
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/content ./content
 
 EXPOSE 5000
 
