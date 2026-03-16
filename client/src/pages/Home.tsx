@@ -6,8 +6,10 @@ import {
   LayoutGrid, PanelsTopLeft, Layers, Maximize, Sun, Construction,
   TreePine, Square, Waves, Thermometer, UtensilsCrossed, Instagram,
   MessageSquare, ClipboardCheck, HardHat, ThumbsUp,
-  Shield, Eye, Users, Clock, Star, Quote, ChevronDown
+  Shield, Eye, Users, Clock, Star, Quote, ChevronDown, BookOpen
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Marquee } from "@/components/Marquee";
 import { InquiryForm } from "@/components/InquiryForm";
@@ -47,6 +49,16 @@ const specialties = [
   { text: "Pembuatan Meja Makan", icon: UtensilsCrossed },
 ];
 
+interface BlogPostMeta {
+  title: string;
+  slug: string;
+  description: string;
+  date: string;
+  author: string;
+  category: string;
+  readTime: string;
+}
+
 function FaqItem({ question, answer, index }: { question: string; answer: string; index: number }) {
   const [open, setOpen] = useState(false);
   return (
@@ -74,6 +86,11 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
 export default function Home() {
   const [selectedService, setSelectedService] = useState("");
 
+  const { data: blogPosts = [], isLoading: blogLoading } = useQuery<BlogPostMeta[]>({
+    queryKey: ["/api/blog"],
+    queryFn: () => fetch("/api/blog").then((r) => r.json()),
+  });
+
   const scrollToContact = (service?: string) => {
     if (service) setSelectedService(service);
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -89,12 +106,17 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <img src={logoImg} alt="Ratunda Renovasi - Jasa Renovasi Rumah Jakarta" className="h-10 w-auto brightness-0 invert" />
           </div>
-          <Button 
-            onClick={scrollToContact}
-            className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-6"
-          >
-            Hubungi Kami
-          </Button>
+          <div className="flex items-center gap-6">
+            <Link href="/blog">
+              <span className="text-white/70 hover:text-white text-sm font-medium transition-colors cursor-pointer hidden md:inline">Blog</span>
+            </Link>
+            <Button
+              onClick={scrollToContact}
+              className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-6"
+            >
+              Hubungi Kami
+            </Button>
+          </div>
         </div>
       </nav>
 
@@ -500,6 +522,78 @@ export default function Home() {
           <Marquee items={specialties.slice(8)} speed="fast" />
         </div>
       </section>
+
+      {/* Blog Preview Section */}
+      {(blogLoading || blogPosts.length > 0) && (
+        <section className="py-20 bg-gray-50/50">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="flex items-end justify-between mb-12">
+              <div>
+                <span className="text-primary font-bold tracking-wider uppercase text-sm">Artikel Terbaru</span>
+                <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3">
+                  Tips & Panduan Renovasi
+                </h2>
+                <div className="w-20 h-1.5 bg-accent rounded-full mt-4" />
+              </div>
+              <Link href="/blog">
+                <span className="hidden md:flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all cursor-pointer text-sm group">
+                  Lihat Semua <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            </div>
+
+            {blogLoading ? (
+              <div className="grid md:grid-cols-3 gap-6">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="rounded-2xl border border-gray-100 bg-white p-6 animate-pulse h-52" />
+                ))}
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {blogPosts.slice(0, 3).map((post, index) => (
+                  <motion.div
+                    key={post.slug}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <Link href={`/blog/${post.slug}`}>
+                      <article className="group rounded-2xl border border-gray-100 bg-white p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-pointer h-full flex flex-col">
+                        <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 self-start mb-3">
+                          <BookOpen className="inline w-3 h-3 mr-1" />
+                          {post.category}
+                        </span>
+                        <h3 className="text-base font-bold font-display text-foreground mb-2 group-hover:text-primary transition-colors leading-snug flex-1">
+                          {post.title}
+                        </h3>
+                        <p className="text-gray-500 text-sm leading-relaxed mb-4">{post.description}</p>
+                        <div className="flex items-center gap-4 text-xs text-gray-400 mt-auto pt-4 border-t border-gray-100">
+                          <span className="flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5" />
+                            {post.readTime}
+                          </span>
+                          <span className="ml-auto flex items-center gap-1 group-hover:text-primary transition-colors font-medium">
+                            Baca <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </span>
+                        </div>
+                      </article>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            <div className="text-center mt-8 md:hidden">
+              <Link href="/blog">
+                <span className="inline-flex items-center gap-2 text-primary font-semibold text-sm cursor-pointer">
+                  Lihat Semua Artikel <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-primary text-white relative overflow-hidden">
