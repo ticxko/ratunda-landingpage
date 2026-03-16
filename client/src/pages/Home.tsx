@@ -224,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-primary font-bold tracking-wider uppercase text-sm">Cara Kerja Kami</span>
@@ -314,11 +314,11 @@ export default function Home() {
       </section>
 
       {/* Why Ratunda Section */}
-      <section className="py-20 bg-gray-50/50">
+      <section className="py-20 bg-slate-900">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-primary font-bold tracking-wider uppercase text-sm">Kenapa Ratunda?</span>
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-white mt-3 mb-4">
               Bukan Sekadar Tukang, <br /> Tapi Partner Renovasi Anda
             </h2>
             <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
@@ -444,11 +444,11 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50/50">
+      <section className="py-20 bg-purple-950">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-primary font-bold tracking-wider uppercase text-sm">FAQ</span>
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-white mt-3 mb-4">
               Pertanyaan yang Sering Ditanyakan
             </h2>
             <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
