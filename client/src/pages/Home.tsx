@@ -290,7 +290,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold font-display text-foreground mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-[250px] text-gray-500">
+                <p className="text-sm leading-relaxed max-w-[250px] text-gray-600">
                   {item.desc}
                 </p>
               </motion.div>
