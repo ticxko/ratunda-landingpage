@@ -15,10 +15,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5001:5000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       - NODE_ENV=production
       - PORT=5000
       - DATABASE_URL=postgres://postgres:postgre@ouhnqf2iou34123fasdf@db:5432/ratunda
+      - SMTP_HOST=host.docker.internal
     depends_on:
       - db
     restart: unless-stopped
