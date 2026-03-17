@@ -130,26 +130,41 @@ export async function registerRoutes(
   if (process.env.NODE_ENV === "production") {
     const distHtmlPath = path.join(process.cwd(), "dist", "public", "index.html");
 
-    function injectMeta(html: string, replacements: Record<string, string>): string {
+    // Replace a meta tag attribute value in-place.
+    // Matches: attr="old_value" and replaces with attr="new_value"
+    function replaceMeta(html: string, attrSelector: string, newValue: string): string {
+      return html.replace(
+        new RegExp(`(${attrSelector}=")[^"]*"`),
+        `$1${newValue}"`
+      );
+    }
+
+    function injectBlogMeta(html: string, opts: {
+      title: string; desc: string; keywords?: string; canonical: string;
+    }): string {
       let out = html;
-      for (const [pattern, value] of Object.entries(replacements)) {
-        out = out.replace(new RegExp(pattern, ""), value);
-      }
+      out = out.replace(/<title>[^<]*<\/title>/, `<title>${opts.title}</title>`);
+      out = replaceMeta(out, 'name="description" content', opts.desc);
+      if (opts.keywords) out = replaceMeta(out, 'name="keywords" content', opts.keywords);
+      out = replaceMeta(out, 'link rel="canonical" href', opts.canonical);
+      out = replaceMeta(out, 'property="og:url" content', opts.canonical);
+      out = replaceMeta(out, 'property="og:title" content', opts.title.replace(" | Ratunda Renovasi", " | Ratunda"));
+      out = replaceMeta(out, 'property="og:description" content', opts.desc);
+      out = replaceMeta(out, 'name="twitter:title" content', opts.title.replace(" | Ratunda Renovasi", " | Ratunda"));
+      out = replaceMeta(out, 'name="twitter:description" content', opts.desc);
       return out;
     }
 
     app.get("/blog", (_req, res) => {
       try {
-        let html = fs.readFileSync(distHtmlPath, "utf-8");
-        html = injectMeta(html, {
-          "<title>[^<]*</title>": "<title>Blog Renovasi Rumah: Tips & Panduan | Ratunda Renovasi</title>",
-          '(<meta name="description" content=")[^"]*("/)': '$1Artikel dan panduan renovasi rumah dari tim arsitek Ratunda \u2014 tips hemat biaya, solusi atap bocor, renovasi dapur & kamar mandi di Jakarta.$2',
-          '(<link rel="canonical" href=")[^"]*("/)': "$1https://ratunda.id/blog$2",
-          '(<meta property="og:url" content=")[^"]*("/)': "$1https://ratunda.id/blog$2",
-          '(<meta property="og:title" content=")[^"]*("/)': "$1Blog Renovasi Rumah: Tips & Panduan | Ratunda$2",
+        const html = fs.readFileSync(distHtmlPath, "utf-8");
+        const injected = injectBlogMeta(html, {
+          title: "Blog Renovasi Rumah: Tips & Panduan | Ratunda Renovasi",
+          desc: "Artikel dan panduan renovasi rumah dari tim arsitek Ratunda \u2014 tips hemat biaya, solusi atap bocor, renovasi dapur &amp; kamar mandi di Jakarta.",
+          canonical: "https://ratunda.id/blog",
         });
         res.setHeader("Content-Type", "text/html");
-        res.send(html);
+        res.send(injected);
       } catch {
         res.sendFile(distHtmlPath);
       }
@@ -160,23 +175,15 @@ export async function registerRoutes(
       if (!post) return res.sendFile(distHtmlPath);
       try {
         const { meta } = post;
-        const canonical = `https://ratunda.id/blog/${meta.slug}`;
-        const safeTitle = escapeHtml(meta.title);
-        const safeDesc = escapeHtml(meta.description);
-        let html = fs.readFileSync(distHtmlPath, "utf-8");
-        html = injectMeta(html, {
-          "<title>[^<]*</title>": `<title>${safeTitle} | Ratunda Renovasi</title>`,
-          '(<meta name="description" content=")[^"]*("/)': `$1${safeDesc}$2`,
-          '(<meta name="keywords" content=")[^"]*("/)': `$1${escapeHtml(meta.keywords)}$2`,
-          '(<link rel="canonical" href=")[^"]*("/)': `$1${canonical}$2`,
-          '(<meta property="og:url" content=")[^"]*("/)': `$1${canonical}$2`,
-          '(<meta property="og:title" content=")[^"]*("/)': `$1${safeTitle} | Ratunda$2`,
-          '(<meta property="og:description" content=")[^"]*("/)': `$1${safeDesc}$2`,
-          '(<meta name="twitter:title" content=")[^"]*("/)': `$1${safeTitle} | Ratunda$2`,
-          '(<meta name="twitter:description" content=")[^"]*("/)': `$1${safeDesc}$2`,
+        const html = fs.readFileSync(distHtmlPath, "utf-8");
+        const injected = injectBlogMeta(html, {
+          title: `${escapeHtml(meta.title)} | Ratunda Renovasi`,
+          desc: escapeHtml(meta.description),
+          keywords: escapeHtml(meta.keywords),
+          canonical: `https://ratunda.id/blog/${meta.slug}`,
         });
         res.setHeader("Content-Type", "text/html");
-        res.send(html);
+        res.send(injected);
       } catch {
         res.sendFile(distHtmlPath);
       }
