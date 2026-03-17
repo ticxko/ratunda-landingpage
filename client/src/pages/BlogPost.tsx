@@ -42,6 +42,16 @@ export default function BlogPost() {
     enabled: !!slug,
   });
 
+  // Must be before any early returns — hooks cannot be called conditionally
+  React.useEffect(() => {
+    if (data?.meta?.title) {
+      document.title = `${data.meta.title} | Ratunda Renovasi`;
+    }
+    return () => {
+      document.title = "Jasa Renovasi Rumah Profesional Jakarta & Jabodetabek | Ratunda Renovasi";
+    };
+  }, [data?.meta?.title]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-white font-body">
@@ -73,14 +83,6 @@ export default function BlogPost() {
   }
 
   const { meta, html } = data;
-
-  // Update document title for client-side navigation
-  React.useEffect(() => {
-    document.title = `${meta.title} | Ratunda Renovasi`;
-    return () => {
-      document.title = "Jasa Renovasi Rumah Profesional Jakarta & Jabodetabek | Ratunda Renovasi";
-    };
-  }, [meta.title]);
 
   const articleJsonLd = {
     "@context": "https://schema.org",
