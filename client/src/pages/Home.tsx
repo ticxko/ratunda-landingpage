@@ -108,7 +108,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-6">
             <Link href="/blog">
-              <span className="text-white/70 hover:text-white text-sm font-medium transition-colors cursor-pointer hidden md:inline">Blog</span>
+              <span className="text-white/70 hover:text-white text-sm font-medium transition-colors cursor-pointer">Blog</span>
             </Link>
             <Button
               onClick={scrollToContact}
