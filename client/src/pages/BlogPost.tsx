@@ -158,8 +158,8 @@ export default function BlogPost() {
               </span>
             </Link>
             <div className="flex items-center gap-2 mb-4">
-              <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent-foreground bg-accent/20 border border-accent/30 px-2.5 py-1 rounded-full">
-                <Tag className="w-3 h-3 text-accent" />
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-white bg-accent/80 border border-accent px-2.5 py-1 rounded-full">
+                <Tag className="w-3 h-3 text-white" />
                 {meta.category}
               </span>
             </div>

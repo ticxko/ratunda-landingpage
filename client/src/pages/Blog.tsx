@@ -16,10 +16,11 @@ interface BlogPostMeta {
 }
 
 const CATEGORY_STYLES: Record<string, string> = {
-  "Biaya & Perencanaan": "bg-accent/20 text-accent-foreground border border-accent/30",
-  "Masalah Rumah & Solusi": "bg-primary/10 text-primary border border-primary/20",
-  "Tips Memilih Jasa": "bg-secondary/10 text-secondary border border-secondary/20",
-  "Panduan Renovasi": "bg-muted/10 text-muted border border-muted/20",
+  "Biaya & Perencanaan": "bg-accent/80 text-white border border-accent",
+  "Masalah Rumah & Solusi": "bg-primary/80 text-white border border-primary",
+  "Tips Memilih Jasa": "bg-secondary/80 text-white border border-secondary",
+  "Panduan Renovasi": "bg-accent/80 text-white border border-accent",
+  "Panduan Teknis": "bg-primary/80 text-white border border-primary",
 };
 
 function formatDate(dateStr: string) {
