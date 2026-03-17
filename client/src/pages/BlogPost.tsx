@@ -74,7 +74,15 @@ export default function BlogPost() {
 
   const { meta, html } = data;
 
-  const jsonLd = {
+  // Update document title for client-side navigation
+  React.useEffect(() => {
+    document.title = `${meta.title} | Ratunda Renovasi`;
+    return () => {
+      document.title = "Jasa Renovasi Rumah Profesional Jakarta & Jabodetabek | Ratunda Renovasi";
+    };
+  }, [meta.title]);
+
+  const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: meta.title,
@@ -90,7 +98,7 @@ export default function BlogPost() {
       url: "https://ratunda.id",
       logo: {
         "@type": "ImageObject",
-        url: "https://ratunda.id/logo.png",
+        url: "https://ratunda.id/favicon.png",
       },
     },
     datePublished: meta.date,
@@ -102,12 +110,27 @@ export default function BlogPost() {
     keywords: meta.keywords,
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Beranda", item: "https://ratunda.id" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://ratunda.id/blog" },
+      { "@type": "ListItem", position: 3, name: meta.title, item: `https://ratunda.id/blog/${meta.slug}` },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white font-body overflow-x-hidden">
-      {/* JSON-LD */}
+      {/* JSON-LD: Article */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      {/* JSON-LD: BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Navigation */}

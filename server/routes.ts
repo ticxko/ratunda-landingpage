@@ -95,6 +95,94 @@ export async function registerRoutes(
     res.json(post);
   });
 
+  // Dynamic sitemap — auto-includes all blog posts
+  app.get("/sitemap.xml", (_req, res) => {
+    const posts = getBlogPosts();
+    const today = new Date().toISOString().split("T")[0];
+    const postUrls = posts.map((p) => `
+  <url>
+    <loc>https://ratunda.id/blog/${p.slug}</loc>
+    <lastmod>${p.date}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`).join("");
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ratunda.id/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ratunda.id/blog</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>${postUrls}
+</urlset>`;
+    res.setHeader("Content-Type", "application/xml");
+    res.send(xml);
+  });
+
+  // SSR meta injection for blog pages (production only)
+  // Googlebot gets correct <title>, <meta description>, canonical, OG tags per post
+  if (process.env.NODE_ENV === "production") {
+    const distHtmlPath = path.join(process.cwd(), "dist", "public", "index.html");
+
+    function injectMeta(html: string, replacements: Record<string, string>): string {
+      let out = html;
+      for (const [pattern, value] of Object.entries(replacements)) {
+        out = out.replace(new RegExp(pattern, ""), value);
+      }
+      return out;
+    }
+
+    app.get("/blog", (_req, res) => {
+      try {
+        let html = fs.readFileSync(distHtmlPath, "utf-8");
+        html = injectMeta(html, {
+          "<title>[^<]*</title>": "<title>Blog Renovasi Rumah: Tips & Panduan | Ratunda Renovasi</title>",
+          '(<meta name="description" content=")[^"]*("/)': '$1Artikel dan panduan renovasi rumah dari tim arsitek Ratunda \u2014 tips hemat biaya, solusi atap bocor, renovasi dapur & kamar mandi di Jakarta.$2',
+          '(<link rel="canonical" href=")[^"]*("/)': "$1https://ratunda.id/blog$2",
+          '(<meta property="og:url" content=")[^"]*("/)': "$1https://ratunda.id/blog$2",
+          '(<meta property="og:title" content=")[^"]*("/)': "$1Blog Renovasi Rumah: Tips & Panduan | Ratunda$2",
+        });
+        res.setHeader("Content-Type", "text/html");
+        res.send(html);
+      } catch {
+        res.sendFile(distHtmlPath);
+      }
+    });
+
+    app.get("/blog/:slug", (req, res) => {
+      const post = getBlogPost(req.params.slug);
+      if (!post) return res.sendFile(distHtmlPath);
+      try {
+        const { meta } = post;
+        const canonical = `https://ratunda.id/blog/${meta.slug}`;
+        const safeTitle = escapeHtml(meta.title);
+        const safeDesc = escapeHtml(meta.description);
+        let html = fs.readFileSync(distHtmlPath, "utf-8");
+        html = injectMeta(html, {
+          "<title>[^<]*</title>": `<title>${safeTitle} | Ratunda Renovasi</title>`,
+          '(<meta name="description" content=")[^"]*("/)': `$1${safeDesc}$2`,
+          '(<meta name="keywords" content=")[^"]*("/)': `$1${escapeHtml(meta.keywords)}$2`,
+          '(<link rel="canonical" href=")[^"]*("/)': `$1${canonical}$2`,
+          '(<meta property="og:url" content=")[^"]*("/)': `$1${canonical}$2`,
+          '(<meta property="og:title" content=")[^"]*("/)': `$1${safeTitle} | Ratunda$2`,
+          '(<meta property="og:description" content=")[^"]*("/)': `$1${safeDesc}$2`,
+          '(<meta name="twitter:title" content=")[^"]*("/)': `$1${safeTitle} | Ratunda$2`,
+          '(<meta name="twitter:description" content=")[^"]*("/)': `$1${safeDesc}$2`,
+        });
+        res.setHeader("Content-Type", "text/html");
+        res.send(html);
+      } catch {
+        res.sendFile(distHtmlPath);
+      }
+    });
+  }
+
   app.post(api.inquiries.create.path, async (req, res) => {
     try {
       const input = api.inquiries.create.input.parse(req.body);

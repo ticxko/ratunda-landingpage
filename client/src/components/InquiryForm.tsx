@@ -55,6 +55,11 @@ export function InquiryForm({ selectedService }: InquiryFormProps) {
       onSuccess: () => {
         form.reset();
         setSubmitted(true);
+        // Fire Google Ads conversion on form submission
+        (window as any).gtag?.("event", "conversion", {
+          send_to: "AW-18020162559/pGTsCO234okcEP-315BD",
+        });
+        (window as any).gtag?.("event", "generate_lead");
       },
     });
   }
