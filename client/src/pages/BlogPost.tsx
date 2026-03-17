@@ -42,57 +42,6 @@ export default function BlogPost() {
     enabled: !!slug,
   });
 
-  // Inject title + JSON-LD into <head> — must be before early returns (hooks rule)
-  // Using useEffect instead of <script> in JSX to avoid React 18.3 resource hoisting issues
-  React.useEffect(() => {
-    if (!data?.meta) return;
-    const { meta } = data;
-
-    document.title = `${meta.title} | Ratunda Renovasi`;
-
-    const articleScript = document.createElement("script");
-    articleScript.type = "application/ld+json";
-    articleScript.id = "ld-article";
-    articleScript.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: meta.title,
-      description: meta.description,
-      author: { "@type": "Organization", name: meta.author, url: "https://ratunda.id" },
-      publisher: {
-        "@type": "Organization",
-        name: "Ratunda Renovasi",
-        url: "https://ratunda.id",
-        logo: { "@type": "ImageObject", url: "https://ratunda.id/favicon.png" },
-      },
-      datePublished: meta.date,
-      dateModified: meta.date,
-      mainEntityOfPage: { "@type": "WebPage", "@id": `https://ratunda.id/blog/${meta.slug}` },
-      keywords: meta.keywords,
-    });
-    document.head.appendChild(articleScript);
-
-    const breadcrumbScript = document.createElement("script");
-    breadcrumbScript.type = "application/ld+json";
-    breadcrumbScript.id = "ld-breadcrumb";
-    breadcrumbScript.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Beranda", item: "https://ratunda.id" },
-        { "@type": "ListItem", position: 2, name: "Blog", item: "https://ratunda.id/blog" },
-        { "@type": "ListItem", position: 3, name: meta.title, item: `https://ratunda.id/blog/${meta.slug}` },
-      ],
-    });
-    document.head.appendChild(breadcrumbScript);
-
-    return () => {
-      document.title = "Jasa Renovasi Rumah Profesional Jakarta & Jabodetabek | Ratunda Renovasi";
-      document.getElementById("ld-article")?.remove();
-      document.getElementById("ld-breadcrumb")?.remove();
-    };
-  }, [data?.meta?.title]);
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-white font-body">
@@ -125,8 +74,41 @@ export default function BlogPost() {
 
   const { meta, html } = data;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: meta.title,
+    description: meta.description,
+    author: {
+      "@type": "Organization",
+      name: meta.author,
+      url: "https://ratunda.id",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Ratunda Renovasi",
+      url: "https://ratunda.id",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://ratunda.id/logo.png",
+      },
+    },
+    datePublished: meta.date,
+    dateModified: meta.date,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://ratunda.id/blog/${meta.slug}`,
+    },
+    keywords: meta.keywords,
+  };
+
   return (
     <div className="min-h-screen bg-white font-body overflow-x-hidden">
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#0b142e]/90 backdrop-blur-md border-b border-white/5">
