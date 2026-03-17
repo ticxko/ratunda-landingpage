@@ -139,8 +139,13 @@ export async function registerRoutes(
       );
     }
 
+    function injectJsonLd(html: string, data: object): string {
+      const json = JSON.stringify(data).replace(/<\/script>/gi, "<\\/script>");
+      return html.replace("</head>", `<script type="application/ld+json">${json}</script></head>`);
+    }
+
     function injectBlogMeta(html: string, opts: {
-      title: string; desc: string; keywords?: string; canonical: string;
+      title: string; desc: string; keywords?: string; canonical: string; breadcrumbs?: object;
     }): string {
       let out = html;
       out = out.replace(/<title>[^<]*<\/title>/, `<title>${opts.title}</title>`);
@@ -152,6 +157,7 @@ export async function registerRoutes(
       out = replaceMeta(out, 'property="og:description" content', opts.desc);
       out = replaceMeta(out, 'name="twitter:title" content', opts.title.replace(" | Ratunda Renovasi", " | Ratunda"));
       out = replaceMeta(out, 'name="twitter:description" content', opts.desc);
+      if (opts.breadcrumbs) out = injectJsonLd(out, opts.breadcrumbs);
       return out;
     }
 
@@ -162,6 +168,14 @@ export async function registerRoutes(
           title: "Blog Renovasi Rumah: Tips & Panduan | Ratunda Renovasi",
           desc: "Artikel dan panduan renovasi rumah dari tim arsitek Ratunda \u2014 tips hemat biaya, solusi atap bocor, renovasi dapur &amp; kamar mandi di Jakarta.",
           canonical: "https://ratunda.id/blog",
+          breadcrumbs: {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Beranda", item: "https://ratunda.id/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://ratunda.id/blog" },
+            ],
+          },
         });
         res.setHeader("Content-Type", "text/html");
         res.send(injected);
@@ -181,6 +195,15 @@ export async function registerRoutes(
           desc: escapeHtml(meta.description),
           keywords: escapeHtml(meta.keywords),
           canonical: `https://ratunda.id/blog/${meta.slug}`,
+          breadcrumbs: {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Beranda", item: "https://ratunda.id/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://ratunda.id/blog" },
+              { "@type": "ListItem", position: 3, name: meta.title, item: `https://ratunda.id/blog/${meta.slug}` },
+            ],
+          },
         });
         res.setHeader("Content-Type", "text/html");
         res.send(injected);

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { Link, useParams } from "wouter";
 import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { motion } from "framer-motion";
@@ -41,6 +42,16 @@ export default function BlogPost() {
       }),
     enabled: !!slug,
   });
+
+  // Update document.title for SPA navigation (must be before early returns — hooks rule)
+  useEffect(() => {
+    if (data?.meta.title) {
+      document.title = `${data.meta.title} | Ratunda Renovasi`;
+    }
+    return () => {
+      document.title = "Ratunda Renovasi | Jasa Renovasi Rumah Jakarta";
+    };
+  }, [data?.meta.title]);
 
   if (isLoading) {
     return (
