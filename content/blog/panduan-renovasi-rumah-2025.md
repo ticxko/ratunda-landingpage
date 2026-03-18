@@ -539,7 +539,7 @@ readTime: "12 menit"
 
 <div class="ra-article">
 
-<img src="/blog/PLRR-head-title.jpg" alt="Panduan Lengkap Renovasi Rumah 2025" style="width:100%;border-radius:16px;margin-bottom:44px;display:block;" />
+<img src="/blog/panduan-renovasi-rumah-jakarta.jpg" alt="Panduan Lengkap Renovasi Rumah 2025" style="width:100%;border-radius:16px;margin-bottom:44px;display:block;" />
 
 <!-- ══ SECTION 1: MENGAPA RENOVASI ══ -->
 <div class="ra-section">
@@ -548,7 +548,7 @@ readTime: "12 menit"
   <div class="divider"></div>
   <p class="lead">Sebagian besar pemilik rumah baru mempertimbangkan renovasi ketika ada kerusakan yang mencolok — atap bocor, dinding retak, atau instalasi listrik yang sudah berbahaya. Padahal, renovasi bukan hanya soal perbaikan darurat. Ini adalah investasi hidup yang menyentuh kenyamanan, estetika, dan nilai properti Anda.</p>
 
-  <img src="/blog/PLRR-kapan-saat-berubah.jpg" alt="Kapan Saatnya Rumah Anda Perlu Berubah" style="width:100%;border-radius:12px;margin:20px 0 28px;display:block;" />
+  <img src="/blog/kapan-waktu-renovasi-rumah.jpg" alt="Kapan Saatnya Rumah Anda Perlu Berubah" style="width:100%;border-radius:12px;margin:20px 0 28px;display:block;" />
 
   <p>Ada tiga alasan utama seseorang memutuskan untuk merenovasi rumah, dan ketiganya sama-sama valid:</p>
 
@@ -578,7 +578,7 @@ readTime: "12 menit"
 <!-- ══ SECTION 2: KESEHATAN ══ -->
 <div class="ra-section alt">
   <div class="section-label">Riset &amp; Fakta</div>
-  <img src="/blog/PLRR-kesehatan-produktivitas.jpg" alt="Kondisi Rumah Mempengaruhi Kesehatan dan Produktivitas" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
+  <img src="/blog/kondisi-rumah-kesehatan-produktivitas.jpg" alt="Kondisi Rumah Mempengaruhi Kesehatan dan Produktivitas" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
   <h2 class="ra-h2">Kondisi Rumah Mempengaruhi <em>Kesehatan &amp; Produktivitas</em> Anda</h2>
   <div class="divider"></div>
   <p class="lead">Banyak orang tidak menyadari bahwa rumah bukan sekadar tempat berlindung. Kualitas lingkungan dalam ruangan — udara, cahaya, suhu, akustik — memiliki dampak nyata pada kesehatan fisik dan produktivitas kerja Anda sehari-hari.</p>
@@ -641,7 +641,7 @@ readTime: "12 menit"
 <!-- ══ SECTION 3: MANFAAT UTAMA ══ -->
 <div class="ra-section">
   <div class="section-label">Keuntungan Jangka Panjang</div>
-  <img src="/blog/PLRR-manfaat-renovasi.jpg" alt="5 Manfaat Utama Renovasi yang Sering Diabaikan" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
+  <img src="/blog/manfaat-renovasi-rumah.jpg" alt="5 Manfaat Utama Renovasi yang Sering Diabaikan" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
   <h2 class="ra-h2">5 Manfaat Utama Renovasi yang <em>Sering Diabaikan</em></h2>
   <div class="divider"></div>
   <p class="lead">Renovasi yang direncanakan dengan baik bukan pengeluaran — ini adalah keputusan finansial dan kualitas hidup yang cerdas.</p>
@@ -718,7 +718,7 @@ readTime: "12 menit"
 <!-- ══ SECTION 5: BIAYA ══ -->
 <div class="ra-section dark">
   <div class="section-label">Estimasi Biaya 2025</div>
-  <img src="/blog/PLRR-berapa-biaya.jpg" alt="Berapa Biaya Renovasi Rumah di Jabodetabek" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
+  <img src="/blog/biaya-renovasi-rumah-jabodetabek.jpg" alt="Berapa Biaya Renovasi Rumah di Jabodetabek" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
   <h2 class="ra-h2">Berapa Biaya Renovasi Rumah <em>di Jabodetabek?</em></h2>
   <div class="divider"></div>
   <p class="lead">Biaya renovasi di Jabodetabek sangat bervariasi tergantung skala pekerjaan, kualitas material, dan kompleksitas desain. Berikut estimasi yang dirangkum dari berbagai sumber industri konstruksi 2024–2025.</p>
@@ -814,7 +814,7 @@ readTime: "12 menit"
   <div class="section-label">Waspada &amp; Antisipasi</div>
   <h2 class="ra-h2">Masalah yang Sering Terjadi &amp; <em>Cara Menghindarinya</em></h2>
   <div class="divider"></div>
-  <img src="/blog/PLRR-masalah-yang-sering.jpg" alt="Masalah yang Sering Terjadi dalam Renovasi" style="width:100%;border-radius:12px;margin:0 0 28px;display:block;" />
+  <img src="/blog/masalah-renovasi-yang-sering-terjadi.jpg" alt="Masalah yang Sering Terjadi dalam Renovasi" style="width:100%;border-radius:12px;margin:0 0 28px;display:block;" />
   <p class="lead">Proyek renovasi yang bermasalah biasanya bisa diprediksi sejak awal. Berikut adalah risiko paling umum yang dialami pemilik rumah di Jabodetabek dan cara mengantisipasinya.</p>
 
   <div class="risk-grid">
@@ -854,7 +854,7 @@ readTime: "12 menit"
 <!-- ══ SECTION 7: PROSES RENOVASI ══ -->
 <div class="ra-section alt">
   <div class="section-label">Dari Ide ke Kenyataan</div>
-  <img src="/blog/PLRR-proses-renovasi.jpg" alt="Proses Renovasi yang Benar Langkah demi Langkah" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
+  <img src="/blog/proses-renovasi-rumah-langkah-demi-langkah.jpg" alt="Proses Renovasi yang Benar Langkah demi Langkah" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
   <h2 class="ra-h2">Proses Renovasi yang Benar: <em>Langkah demi Langkah</em></h2>
   <div class="divider"></div>
   <p class="lead">Renovasi yang sukses bukan soal keberuntungan. Ini soal proses yang terstruktur, dimulai jauh sebelum satu pun bata diangkat.</p>
@@ -915,7 +915,7 @@ readTime: "12 menit"
 <!-- ══ SECTION 8: RATUNDA ══ -->
 <div class="ra-section">
   <div class="section-label">Kontraktor Terpercaya Anda</div>
-  <img src="/blog/PLRR-kenali-ratunda.jpg" alt="Kenali Ratunda Renovasi Partner Renovasi di Jabodetabek" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
+  <img src="/blog/kontraktor-renovasi-jabodetabek-ratunda.jpg" alt="Kenali Ratunda Renovasi Partner Renovasi di Jabodetabek" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
   <h2 class="ra-h2">Kenali <em>Ratunda Renovasi</em> — Partner Renovasi Anda di Jabodetabek</h2>
   <div class="divider"></div>
 
@@ -997,7 +997,7 @@ readTime: "12 menit"
 <!-- ══ SECTION 9: CARA MEMILIH KONTRAKTOR ══ -->
 <div class="ra-section alt">
   <div class="section-label">Panduan Seleksi</div>
-  <img src="/blog/PLRR-cara-memilih-kontraktor.jpg" alt="Cara Memilih Kontraktor yang Benar-Benar Tepat" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
+  <img src="/blog/cara-memilih-kontraktor-renovasi.jpg" alt="Cara Memilih Kontraktor yang Benar-Benar Tepat" style="width:100%;border-radius:12px;margin:16px 0 24px;display:block;" />
   <h2 class="ra-h2">Cara Memilih Kontraktor yang <em>Benar-Benar Tepat</em></h2>
   <div class="divider"></div>
   <p class="lead">Kontraktor yang salah adalah akar dari hampir semua proyek renovasi yang bermasalah. Berikut kriteria yang harus Anda periksa sebelum menandatangani kontrak apapun.</p>
