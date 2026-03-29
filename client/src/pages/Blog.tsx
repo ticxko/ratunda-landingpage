@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { ArrowRight, Calendar, Clock, Tag, BookOpen } from "lucide-react";
+import { ArrowRight, Calendar, Clock, Tag, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import logoImg from "@assets/01_Ratunda_-_Primary_Logo_crop_1768105271103.png";
 
@@ -13,6 +14,7 @@ interface BlogPostMeta {
   category: string;
   keywords: string;
   readTime: string;
+  thumbnail?: string;
 }
 
 const CATEGORY_STYLES: Record<string, string> = {
@@ -22,6 +24,8 @@ const CATEGORY_STYLES: Record<string, string> = {
   "Panduan Renovasi": "bg-accent/80 text-white border border-accent",
   "Panduan Teknis": "bg-primary/80 text-white border border-primary",
 };
+
+const POSTS_PER_PAGE = 10;
 
 function formatDate(dateStr: string) {
   const date = new Date(dateStr);
@@ -33,10 +37,21 @@ function formatDate(dateStr: string) {
 }
 
 export default function Blog() {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { data: posts = [], isLoading } = useQuery<BlogPostMeta[]>({
     queryKey: ["/api/blog"],
     queryFn: () => fetch("/api/blog").then((r) => r.json()),
   });
+
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
+  const paginatedPosts = posts.slice(startIdx, startIdx + POSTS_PER_PAGE);
+
+  function goToPage(page: number) {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   return (
     <div className="min-h-screen bg-white font-body overflow-x-hidden">
@@ -102,7 +117,7 @@ export default function Blog() {
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-gray-100 bg-gray-50 p-6 animate-pulse h-52"
+                className="rounded-2xl border border-gray-100 bg-gray-50 animate-pulse h-72"
               />
             ))}
           </div>
@@ -112,48 +127,99 @@ export default function Blog() {
             <p className="text-gray-400 text-lg">Belum ada artikel. Segera hadir!</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 gap-6">
-            {posts.map((post, index) => (
-              <motion.div
-                key={post.slug}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <Link href={`/blog/${post.slug}`}>
-                  <article className="group rounded-2xl border border-gray-100 bg-white p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-pointer h-full flex flex-col">
-                    <div className="mb-3">
-                      <span
-                        className={`text-xs font-semibold px-2.5 py-1 rounded-full inline-flex items-center gap-1 ${
-                          CATEGORY_STYLES[post.category] ?? "bg-gray-100 text-gray-600 border border-gray-200"
-                        }`}
-                      >
-                        <Tag className="w-3 h-3" />
-                        {post.category}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold font-display text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
-                      {post.title}
-                    </h2>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
-                      {post.description}
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-gray-400 mt-auto pt-4 border-t border-gray-100">
-                      <span className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {formatDate(post.date)}
-                      </span>
-                      <span className="flex items-center gap-1.5 group-hover:text-primary transition-colors font-medium">
-                        <Clock className="w-3.5 h-3.5" />
-                        {post.readTime}
-                        <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                      </span>
-                    </div>
-                  </article>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+          <>
+            <div className="grid md:grid-cols-2 gap-6">
+              {paginatedPosts.map((post, index) => (
+                <motion.div
+                  key={post.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
+                >
+                  <Link href={`/blog/${post.slug}`}>
+                    <article className="group rounded-2xl border border-gray-100 bg-white hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-pointer h-full flex flex-col overflow-hidden">
+                      {post.thumbnail && (
+                        <div className="w-full h-48 overflow-hidden bg-gray-100">
+                          <img
+                            src={post.thumbnail}
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6 flex flex-col flex-1">
+                        <div className="mb-3">
+                          <span
+                            className={`text-xs font-semibold px-2.5 py-1 rounded-full inline-flex items-center gap-1 ${
+                              CATEGORY_STYLES[post.category] ?? "bg-gray-100 text-gray-600 border border-gray-200"
+                            }`}
+                          >
+                            <Tag className="w-3 h-3" />
+                            {post.category}
+                          </span>
+                        </div>
+                        <h2 className="text-lg font-bold font-display text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
+                          {post.title}
+                        </h2>
+                        <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1 line-clamp-2">
+                          {post.description}
+                        </p>
+                        <div className="flex items-center justify-between text-xs text-gray-400 mt-auto pt-4 border-t border-gray-100">
+                          <span className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {formatDate(post.date)}
+                          </span>
+                          <span className="flex items-center gap-1.5 group-hover:text-primary transition-colors font-medium">
+                            <Clock className="w-3.5 h-3.5" />
+                            {post.readTime}
+                            <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <nav className="flex items-center justify-center gap-2 mt-12">
+                <button
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-100 text-gray-600"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Prev
+                </button>
+
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => goToPage(page)}
+                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${
+                      page === currentPage
+                        ? "bg-primary text-white shadow-md shadow-primary/20"
+                        : "text-gray-500 hover:bg-gray-100"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+
+                <button
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-100 text-gray-600"
+                >
+                  Next
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </nav>
+            )}
+          </>
         )}
       </main>
 

@@ -20,6 +20,12 @@ interface BlogPostMeta {
   category: string;
   keywords: string;
   readTime: string;
+  thumbnail?: string;
+}
+
+function extractFirstImage(content: string): string | undefined {
+  const match = content.match(/<img\s[^>]*src=["']([^"']+)["']/);
+  return match?.[1];
 }
 
 function getBlogPosts(): BlogPostMeta[] {
@@ -28,8 +34,9 @@ function getBlogPosts(): BlogPostMeta[] {
   return files
     .map((file) => {
       const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
-      const { data } = matter(raw);
-      return data as BlogPostMeta;
+      const { data, content } = matter(raw);
+      const thumbnail = extractFirstImage(content);
+      return { ...data, thumbnail } as BlogPostMeta;
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
