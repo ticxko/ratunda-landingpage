@@ -359,6 +359,20 @@ readTime: "8 menit"
   .ra-article .step { gap: 14px; }
   .ra-article .cost-category-head { padding: 14px 16px; }
 }
+/* ─── IMAGES ──────────────────────────── */
+.ra-article .img-full {
+  margin: 2rem 0; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 6px 28px rgba(0,0,0,.13);
+}
+.ra-article .img-full img { width: 100%; display: block; aspect-ratio: 16/7; object-fit: cover; }
+.ra-article .img-full figcaption { background: var(--ra-dark); color: rgba(255,255,255,.8); font-size: .82rem; padding: .6rem 1rem; }
+.ra-article .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+.ra-article .img-pair figure { margin: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,.1); }
+.ra-article .img-pair img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+.ra-article .img-pair figcaption { font-size: .8rem; color: #666; padding: .5rem .75rem; background: #f8f5f0; }
+@media (max-width: 600px) {
+  .ra-article .img-pair { grid-template-columns: 1fr; }
+}
 </style>
 
 <div class="ra-article">
@@ -410,6 +424,11 @@ readTime: "8 menit"
     </div>
   </div>
 </div>
+
+<figure class="img-full">
+  <img src="/blog/renovasi-rumah/renovasi-rumah-3d-model-perencanaan-konstruksi.jpg" alt="Model 3D renovasi rumah dengan blueprint dan perencanaan konstruksi profesional" loading="lazy" />
+  <figcaption>Perencanaan renovasi yang matang — dari desain 3D hingga RAB detail — adalah kunci proyek yang selesai tepat waktu dan sesuai anggaran.</figcaption>
+</figure>
 
 <!-- ══ SECTION 2: ESTIMASI BIAYA ══ -->
 <div class="ra-section alt">
@@ -593,6 +612,17 @@ readTime: "8 menit"
   </div>
 </div>
 
+<div class="img-pair">
+  <figure>
+    <img src="/blog/renovasi-rumah/pekerja-cat-eksterior-rumah-renovasi.webp" alt="Dua pekerja cat eksterior rumah saat renovasi tampak luar" loading="lazy" />
+    <figcaption>Pengecatan eksterior — salah satu pekerjaan renovasi paling populer untuk meremajakan tampilan rumah.</figcaption>
+  </figure>
+  <figure>
+    <img src="/blog/renovasi-rumah/perencanaan-renovasi-model-rumah-rab-material.webp" alt="Model rumah miniatur dengan material dan blueprint RAB di atas meja perencanaan renovasi" loading="lazy" />
+    <figcaption>Setiap renovasi sukses dimulai dari perencanaan matang — RAB detail mencegah pembengkakan biaya di tengah proyek.</figcaption>
+  </figure>
+</div>
+
 <!-- ══ SECTION 3: CARA MENGHITUNG RAB ══ -->
 <div class="ra-section">
   <div class="section-label">Menghitung Anggaran</div>
@@ -679,6 +709,11 @@ readTime: "8 menit"
   <h2 class="ra-h2">Kapan Harus Pakai <em>Jasa Arsitek?</em></h2>
   <div class="divider"></div>
   <p class="lead">Tidak semua renovasi membutuhkan arsitek, tetapi untuk pekerjaan tertentu, keterlibatan arsitek bukan sekadar rekomendasi — ini kebutuhan.</p>
+
+  <figure class="img-full">
+    <img src="/blog/renovasi-rumah/kontraktor-arsitek-review-gambar-di-lokasi.webp" alt="Kontraktor dan arsitek profesional mereview gambar blueprint di lokasi proyek renovasi" loading="lazy" />
+    <figcaption>Arsitek berpengalaman memastikan setiap detail teknis proyek sesuai spesifikasi — dari struktur hingga finishing.</figcaption>
+  </figure>
 
   <p>Untuk renovasi yang melibatkan hal-hal berikut, <strong>sangat disarankan</strong> menggunakan jasa arsitek atau kontraktor yang diawasi arsitek:</p>
 

@@ -424,6 +424,46 @@ readTime: "18 menit"
   .ra-article .formula { font-size: 0.875rem; }
   .ra-article .formula-box { padding: 18px 16px; }
 }
+
+/* ── Article Images ── */
+.ra-article .img-full {
+  margin: 2rem 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(0,0,0,.13);
+}
+.ra-article .img-full img {
+  width: 100%; display: block;
+  aspect-ratio: 16/7; object-fit: cover;
+}
+.ra-article .img-full figcaption {
+  background: var(--ra-dark);
+  color: rgba(255,255,255,.8);
+  font-size: .82rem; padding: .6rem 1rem;
+  font-family: 'Manrope', sans-serif;
+}
+.ra-article .img-pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin: 2rem 0;
+}
+.ra-article .img-pair figure {
+  margin: 0; border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,.1);
+}
+.ra-article .img-pair img {
+  width: 100%; display: block;
+  aspect-ratio: 4/3; object-fit: cover;
+}
+.ra-article .img-pair figcaption {
+  background: var(--ra-dark);
+  color: rgba(255,255,255,.75);
+  font-size: .8rem; padding: .5rem .85rem;
+  font-family: 'Manrope', sans-serif;
+}
+@media (max-width: 600px) {
+  .ra-article .img-pair { grid-template-columns: 1fr; }
+}
 </style>
 
 <div class="ra-article">
@@ -451,6 +491,11 @@ readTime: "18 menit"
     </ul>
   </div>
 </div>
+
+<figure class="img-full">
+  <img src="/blog/atap-bocor/plafon-rembes-rusak-bocor-parah.jpg" alt="Plafon rembes dan rusak parah akibat atap bocor — noda hitam jamur dan plafon jebol" loading="lazy" />
+  <figcaption>Plafon yang rembes lama-kelamaan berubah jadi jebol total — kondisi seperti ini membutuhkan perbaikan atap sebelum penggantian plafon</figcaption>
+</figure>
 
 <!-- ══ SECTION 2: Anatomi & Mekanisme Kebocoran Atap ══ -->
 <div class="ra-section alt">
@@ -604,6 +649,17 @@ readTime: "18 menit"
       </div>
     </div>
   </div>
+</div>
+
+<div class="img-pair">
+  <figure>
+    <img src="/blog/atap-bocor/atap-bocor-genteng-rusak-talang-jebol.jpg" alt="Atap bocor dengan genteng keramik rusak dan talang yang jebol terkelupas" loading="lazy" />
+    <figcaption>Genteng retak + talang terkelupas — kombinasi umum yang memicu kebocoran di area pertemuan atap dan dinding</figcaption>
+  </figure>
+  <figure>
+    <img src="/blog/atap-bocor/atap-shingles-rusak-bocor-titik-kritis.jpg" alt="Atap shingles aspal rusak melengkung di sekitar cerobong — titik kritis kebocoran" loading="lazy" />
+    <figcaption>Titik pertemuan cerobong dan atap shingles — area flashing yang rusak adalah penyebab bocor paling sulit dilacak</figcaption>
+  </figure>
 </div>
 
 <!-- ══ SECTION 3: Kalkulasi Kemiringan Atap & Drainase ══ -->
@@ -771,6 +827,11 @@ readTime: "18 menit"
 
   <p>Perbaikan atap bocor yang efektif harus mengikuti hierarki intervensi: dari perbaikan terlokalisir (minor repair) hingga rehabilitasi sistem penuh (full rehabilitation). Pilih level intervensi berdasarkan kondisi aktual atap.</p>
 
+  <figure class="img-full">
+    <img src="/blog/atap-bocor/atap-bocor-parah-air-mengalir-plafon-jebol.jpg" alt="Atap bocor parah — air mengalir deras melalui lubang di plafon yang sudah jebol" loading="lazy" />
+    <figcaption>Kondisi darurat: atap dan plafon bocor parah dengan air mengalir bebas — intervensi penuh (full rehabilitation) harus dilakukan segera sebelum kerusakan meluas ke struktur</figcaption>
+  </figure>
+
   <div class="subsection">
     <h3 class="subsection-title">5.1 Level 1 — Perbaikan Sementara (Emergency Repair)</h3>
     <p><strong>Kapan:</strong> Saat hujan aktif atau musim hujan sudah berlangsung dan perbaikan permanen tidak memungkinkan.</p>
@@ -899,6 +960,17 @@ readTime: "18 menit"
   <div class="divider"></div>
 
   <p>Plafon bukan sekadar elemen estetika — ia adalah penutup instalasi, peredam bunyi, dan lapisan termal antara ruang tinggal dan ruang atap. Penggantian plafon yang dilakukan sebelum atap diperbaiki adalah pemborosan yang pasti berulang.</p>
+
+  <div class="img-pair">
+    <figure>
+      <img src="/blog/atap-bocor/teknisi-perbaikan-atap-genteng-waterproofing.jpg" alt="Teknisi profesional memperbaiki atap genteng dengan aplikasi waterproofing" loading="lazy" />
+      <figcaption>Teknisi berpengalaman mengaplikasikan waterproofing pada genteng — perbaikan atap harus tuntas sebelum plafon baru dipasang</figcaption>
+    </figure>
+    <figure>
+      <img src="/blog/atap-bocor/plafon-rembes-rusak-bocor-parah.jpg" alt="Kondisi plafon yang rusak dan jebol akibat rembesan air yang tidak segera ditangani" loading="lazy" />
+      <figcaption>Plafon yang sudah jebol dan berjamur — penggantian material plafon membutuhkan persiapan permukaan yang bersih dan kering total</figcaption>
+    </figure>
+  </div>
 
   <div class="subsection">
     <h3 class="subsection-title">6.1 Kondisi Plafon: Rembes vs Bocor vs Ambruk</h3>
