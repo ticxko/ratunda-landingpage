@@ -416,10 +416,10 @@ export default function Home() {
                 rating: 5,
               },
               {
-                name: "Ibu Rina",
-                location: "Cibubur, Bekasi",
-                service: "Cor Dak Beton Lantai 2",
-                text: "Proyek besar tapi terkoordinasi dengan baik. Ada arsitek yang ngawasin jadi kualitas terjamin. Harga sesuai RAB, tidak ada biaya tambahan mendadak.",
+                name: "Ibu Mira",
+                location: "Caryota, Cibubur",
+                service: "Renovasi Rumah",
+                text: "Saya sangat puas dengan pengalaman bekerja sama dengan tim Ratunda. Tim Ratunda bekerja dengan rapi, hasilnya memuaskan, dan sangat bisa menyesuaikan dengan budget tanpa mengurangi kualitas pekerjaan. Timnya ramah, komunikatif, dan cepat tanggap dalam merespons setiap kebutuhan maupun kendala di lapangan.",
                 rating: 5,
               },
             ].map((testimonial, index) => (

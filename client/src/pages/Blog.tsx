@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "wouter";
+import { Link, useSearch, useLocation } from "wouter";
 import { ArrowRight, Calendar, Clock, Tag, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import logoImg from "@assets/01_Ratunda_-_Primary_Logo_crop_1768105271103.png";
@@ -37,7 +37,11 @@ function formatDate(dateStr: string) {
 }
 
 export default function Blog() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const searchString = useSearch();
+  const [, navigate] = useLocation();
+
+  const pageParam = new URLSearchParams(searchString).get("page");
+  const currentPage = Math.max(1, parseInt(pageParam || "1", 10) || 1);
 
   const { data: posts = [], isLoading } = useQuery<BlogPostMeta[]>({
     queryKey: ["/api/blog"],
@@ -45,13 +49,14 @@ export default function Blog() {
   });
 
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-  const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
+  const safePage = Math.min(currentPage, totalPages || 1);
+  const startIdx = (safePage - 1) * POSTS_PER_PAGE;
   const paginatedPosts = posts.slice(startIdx, startIdx + POSTS_PER_PAGE);
 
-  function goToPage(page: number) {
-    setCurrentPage(page);
+  const goToPage = useCallback((page: number) => {
+    navigate(page <= 1 ? "/blog" : `/blog?page=${page}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-white font-body overflow-x-hidden">

@@ -28,19 +28,6 @@ function extractFirstImage(content: string): string | undefined {
   return match?.[1];
 }
 
-function getBlogPosts(): BlogPostMeta[] {
-  if (!fs.existsSync(BLOG_DIR)) return [];
-  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
-  return files
-    .map((file) => {
-      const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
-      const { data, content } = matter(raw);
-      const thumbnail = extractFirstImage(content);
-      return { ...data, thumbnail } as BlogPostMeta;
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
-}
-
 // Unwrap <pre><code> blocks that marked misidentifies as code blocks when
 // HTML inside markdown is indented 4+ spaces after a blank line.
 function unescapeHTMLCodeBlocks(html: string): string {
@@ -55,24 +42,70 @@ function unescapeHTMLCodeBlocks(html: string): string {
   });
 }
 
-function getBlogPost(slug: string): { meta: BlogPostMeta; html: string } | null {
-  if (!fs.existsSync(BLOG_DIR)) return null;
+// Add loading="lazy" to <img> tags that don't already have it
+function addLazyLoading(html: string): string {
+  return html.replace(/<img\s(?![^>]*loading=)/gi, '<img loading="lazy" ');
+}
+
+// --- Blog cache: parse markdown once, invalidate when files change ---
+let blogListCache: BlogPostMeta[] | null = null;
+const blogPostCache = new Map<string, { meta: BlogPostMeta; html: string }>();
+let blogCacheMtime = 0;
+
+function getBlogDirMtime(): number {
+  if (!fs.existsSync(BLOG_DIR)) return 0;
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
+  let max = 0;
+  for (const f of files) {
+    const mt = fs.statSync(path.join(BLOG_DIR, f)).mtimeMs;
+    if (mt > max) max = mt;
+  }
+  return max;
+}
+
+function invalidateCacheIfStale() {
+  const mtime = getBlogDirMtime();
+  if (mtime !== blogCacheMtime) {
+    blogListCache = null;
+    blogPostCache.clear();
+    blogCacheMtime = mtime;
+  }
+}
+
+function buildBlogList(): BlogPostMeta[] {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
+  const posts: BlogPostMeta[] = [];
   for (const file of files) {
     const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
     const { data, content } = matter(raw);
-    if (data.slug === slug) {
-      return { meta: data as BlogPostMeta, html: unescapeHTMLCodeBlocks(marked(content) as string) };
-    }
+    const html = addLazyLoading(unescapeHTMLCodeBlocks(marked(content) as string));
+    const thumbnail = extractFirstImage(html);
+    const meta = { ...data, thumbnail } as BlogPostMeta;
+    posts.push(meta);
+    blogPostCache.set(meta.slug, { meta, html });
   }
-  return null;
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
+function getBlogPosts(): BlogPostMeta[] {
+  invalidateCacheIfStale();
+  if (!blogListCache) blogListCache = buildBlogList();
+  return blogListCache;
+}
+
+function getBlogPost(slug: string): { meta: BlogPostMeta; html: string } | null {
+  invalidateCacheIfStale();
+  if (!blogListCache) blogListCache = buildBlogList();
+  return blogPostCache.get(slug) ?? null;
+}
+
+const smtpPort = parseInt(process.env.SMTP_PORT || "25", 10);
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "127.0.0.1",
-  port: 25,
-  secure: false,
-  tls: { rejectUnauthorized: false },
+  port: smtpPort,
+  secure: smtpPort === 465,
+  ...(smtpPort === 25 ? { tls: { rejectUnauthorized: false } } : {}),
 });
 
 const SERVICE_LABELS: Record<string, string> = {
@@ -139,21 +172,21 @@ export async function registerRoutes(
 
     // Replace a meta tag attribute value in-place.
     // Matches: attr="old_value" and replaces with attr="new_value"
-    function replaceMeta(html: string, attrSelector: string, newValue: string): string {
+    const replaceMeta = (html: string, attrSelector: string, newValue: string): string => {
       return html.replace(
         new RegExp(`(${attrSelector}=")[^"]*"`),
         `$1${newValue}"`
       );
-    }
+    };
 
-    function injectJsonLd(html: string, data: object): string {
+    const injectJsonLd = (html: string, data: object): string => {
       const json = JSON.stringify(data).replace(/<\/script>/gi, "<\\/script>");
       return html.replace("</head>", `<script type="application/ld+json">${json}</script></head>`);
-    }
+    };
 
-    function injectBlogMeta(html: string, opts: {
+    const injectBlogMeta = (html: string, opts: {
       title: string; desc: string; keywords?: string; canonical: string; breadcrumbs?: object;
-    }): string {
+    }): string => {
       let out = html;
       out = out.replace(/<title>[^<]*<\/title>/, `<title>${opts.title}</title>`);
       out = replaceMeta(out, 'name="description" content', opts.desc);
@@ -166,7 +199,7 @@ export async function registerRoutes(
       out = replaceMeta(out, 'name="twitter:description" content', opts.desc);
       if (opts.breadcrumbs) out = injectJsonLd(out, opts.breadcrumbs);
       return out;
-    }
+    };
 
     app.get("/blog", (_req, res) => {
       try {
@@ -193,7 +226,14 @@ export async function registerRoutes(
 
     app.get("/blog/:slug", (req, res) => {
       const post = getBlogPost(req.params.slug);
-      if (!post) return res.sendFile(distHtmlPath);
+      if (!post) {
+        try {
+          const html = fs.readFileSync(distHtmlPath, "utf-8");
+          return res.status(404).setHeader("Content-Type", "text/html").send(html);
+        } catch {
+          return res.status(404).send("Not found");
+        }
+      }
       try {
         const { meta } = post;
         const html = fs.readFileSync(distHtmlPath, "utf-8");

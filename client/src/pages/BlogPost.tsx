@@ -43,15 +43,35 @@ export default function BlogPost() {
     enabled: !!slug,
   });
 
-  // Update document.title for SPA navigation (must be before early returns — hooks rule)
+  // Update document.title + meta tags for SPA navigation (must be before early returns — hooks rule)
   useEffect(() => {
-    if (data?.meta.title) {
-      document.title = `${data.meta.title} | Ratunda Renovasi`;
+    if (!data?.meta) return;
+    const { title, description, keywords, slug: postSlug } = data.meta;
+    const fullTitle = `${title} | Ratunda Renovasi`;
+    const canonical = `https://ratunda.id/blog/${postSlug}`;
+
+    document.title = fullTitle;
+
+    const metaUpdates: Record<string, string> = {
+      'meta[name="description"]': description,
+      'meta[name="keywords"]': keywords,
+      'meta[property="og:title"]': fullTitle,
+      'meta[property="og:description"]': description,
+      'meta[property="og:url"]': canonical,
+      'meta[name="twitter:title"]': fullTitle,
+      'meta[name="twitter:description"]': description,
+    };
+    for (const [selector, value] of Object.entries(metaUpdates)) {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute("content", value);
     }
+    const link = document.querySelector('link[rel="canonical"]');
+    if (link) link.setAttribute("href", canonical);
+
     return () => {
       document.title = "Ratunda Renovasi | Jasa Renovasi Rumah Jakarta";
     };
-  }, [data?.meta.title]);
+  }, [data?.meta]);
 
   if (isLoading) {
     return (

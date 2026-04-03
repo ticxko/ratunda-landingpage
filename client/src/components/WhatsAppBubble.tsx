@@ -13,7 +13,7 @@ export function WhatsAppBubble() {
         rel="noopener noreferrer"
         className="h-14 w-14 rounded-full bg-white shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center pointer-events-auto"
         title="Chat via WhatsApp"
-        onClick={() => (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18020162559/pGTsCO234okcEP-315BD' })}
+        onClick={() => window.gtag?.('event', 'conversion', { send_to: 'AW-18020162559/pGTsCO234okcEP-315BD' })}
       >
         <svg viewBox="0 0 48 48" className="h-14 w-14" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="24" fill="#25D366" />

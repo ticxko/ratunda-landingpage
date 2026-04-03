@@ -56,10 +56,10 @@ export function InquiryForm({ selectedService }: InquiryFormProps) {
         form.reset();
         setSubmitted(true);
         // Fire Google Ads conversion on form submission
-        (window as any).gtag?.("event", "conversion", {
+        window.gtag?.("event", "conversion", {
           send_to: "AW-18020162559/pGTsCO234okcEP-315BD",
         });
-        (window as any).gtag?.("event", "generate_lead");
+        window.gtag?.("event", "generate_lead");
       },
     });
   }
@@ -82,7 +82,7 @@ export function InquiryForm({ selectedService }: InquiryFormProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold transition-colors"
-          onClick={() => (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18020162559/pGTsCO234okcEP-315BD' })}
+          onClick={() => window.gtag?.('event', 'conversion', { send_to: 'AW-18020162559/pGTsCO234okcEP-315BD' })}
         >
           <MessageSquare className="w-5 h-5" /> Chat WhatsApp Langsung
         </a>
