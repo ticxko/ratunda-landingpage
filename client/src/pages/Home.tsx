@@ -169,15 +169,15 @@ export default function Home() {
                 </span>
               </div>
 
-              <div className="mt-8 flex items-center gap-4 text-xs font-medium text-white/50">
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-white/50">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent" /> Bergaransi
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" /> Bergaransi
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent" /> Harga Transparan
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" /> Harga Transparan
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent" /> Dipimpin Arsitek
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" /> Dipimpin Arsitek
                 </div>
               </div>
             </motion.div>
@@ -201,7 +201,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.5 }}
-                  className="absolute bottom-8 left-8 bg-gray-100/95 backdrop-blur px-6 py-4 rounded-2xl shadow-xl max-w-xs border border-gray-200"
+                  className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 bg-gray-100/95 backdrop-blur px-4 py-3 sm:px-6 sm:py-4 rounded-2xl shadow-xl max-w-[200px] sm:max-w-xs border border-gray-200"
                 >
                   <div className="flex items-center gap-4 mb-2">
                     <div className="flex -space-x-3">
@@ -815,7 +815,7 @@ export default function Home() {
             </div>
             <div className="md:col-span-1">
               <h4 className="font-bold mb-4 text-accent">Layanan Lainnya</h4>
-              <div className="grid grid-cols-3 gap-x-8 gap-y-2 text-gray-400 text-sm min-w-[300px] md:min-w-[450px]">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-2 text-gray-400 text-sm">
                 <ul className="space-y-2">
                   {["Pasang Roster", "Plafon Akustik", "Dinding Panel", "Secondary Skin"].map((s) => (
                     <li key={s}><button onClick={() => scrollToContact("Lainnya")} className="hover:text-accent transition-colors text-left">{s}</button></li>
