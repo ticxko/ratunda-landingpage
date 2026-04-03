@@ -871,7 +871,7 @@ readTime: "8 menit"
     <h2>Siap Hadirkan <em>Cahaya Alami</em> di Rumah Anda?</h2>
     <p>Jangan serahkan proyek skylight pada kontraktor tanpa arsitek. Ratunda Renovasi hadir dengan tim arsitek profesional, RAB transparan, garansi tertulis, dan layanan penuh.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20pemasangan%20skylight%20dan%20minta%20estimasi%20biaya" class="btn-wa" target="_blank" rel="noopener">
+      <a href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20pemasangan%20skylight%20dan%20minta%20estimasi%20biaya" class="btn-wa" target="_blank" rel="noopener">
         💬 Chat WhatsApp Sekarang
       </a>
       <a href="https://www.ratunda.id" class="btn-outline-light" target="_blank" rel="noopener">

@@ -802,7 +802,7 @@ readTime: "14 menit"
     <h2>Siap Mulai Proyek <em>Cor Dak Beton Anda?</em></h2>
     <p>Konsultasi gratis dengan arsitek Ratunda. Kami akan survei lokasi, analisis struktur, dan siapkan RAB transparan -- tanpa biaya di muka, tanpa komitmen.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20mau%20konsultasi%20cor%20dak%20beton" class="btn-wa" target="_blank" rel="noopener">
+      <a href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20mau%20konsultasi%20cor%20dak%20beton" class="btn-wa" target="_blank" rel="noopener">
         Chat WhatsApp Sekarang
       </a>
       <a href="https://www.ratunda.id" class="btn-outline-light" target="_blank" rel="noopener">

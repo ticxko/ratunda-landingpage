@@ -80,7 +80,7 @@ export default function Blog() {
               <span className="text-accent text-sm font-semibold cursor-pointer">Blog</span>
             </Link>
             <a
-              href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
+              href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-5 py-2 text-sm transition-colors"
@@ -245,7 +245,7 @@ export default function Blog() {
             Diskusikan proyekmu dengan arsitek Ratunda — gratis, tanpa komitmen.
           </p>
           <a
-            href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
+            href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-3.5 rounded-full transition-all hover:-translate-y-0.5 shadow-lg shadow-accent/20 text-base"

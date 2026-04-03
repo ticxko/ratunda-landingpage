@@ -764,7 +764,7 @@ readTime: "12 menit"
     <h2>Siap Pasang Kanopi <em>yang Aman, Estetis & Bergaransi?</em></h2>
     <p>Jangan tunda lagi -- hubungi tim Ratunda sekarang untuk konsultasi gratis, survei lokasi, dan RAB transparan tanpa biaya tersembunyi.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20pasang%20kanopi%20rumah%20saya" class="btn-wa" target="_blank" rel="noopener">
+      <a href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20pasang%20kanopi%20rumah%20saya" class="btn-wa" target="_blank" rel="noopener">
         Chat WhatsApp Sekarang
       </a>
       <a href="https://www.ratunda.id" class="btn-outline-light" target="_blank" rel="noopener">

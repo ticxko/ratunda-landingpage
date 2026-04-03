@@ -112,7 +112,7 @@ export default function Home() {
               <span className="text-white/70 hover:text-white text-sm font-medium transition-colors cursor-pointer">Blog</span>
             </Link>
             <Button
-              onClick={scrollToContact}
+              onClick={() => scrollToContact()}
               className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-6"
             >
               Hubungi Kami
@@ -193,7 +193,7 @@ export default function Home() {
                 <img 
                   src={heroImg}
                   alt="Jasa renovasi rumah profesional Jakarta - Ratunda Renovasi" 
-                  className="w-full h-auto scale-110 object-contain"
+                  className="w-full h-auto object-contain"
                 />
                 
                 {/* Floating Badge */}
@@ -327,7 +327,7 @@ export default function Home() {
             className="text-center mt-14"
           >
             <Button
-              onClick={scrollToContact}
+              onClick={() => scrollToContact()}
               className="h-12 px-8 rounded-full text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
             >
               Mulai Konsultasi Gratis <ArrowRight className="ml-2 w-4 h-4" />
@@ -340,7 +340,7 @@ export default function Home() {
       <section className="py-20 bg-slate-900">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-primary font-bold tracking-wider uppercase text-sm">Kenapa Ratunda?</span>
+            <span className="text-accent font-bold tracking-wider uppercase text-sm">Kenapa Ratunda?</span>
             <h2 className="text-3xl md:text-4xl font-bold font-display text-white mt-3 mb-4">
               Bukan Sekadar Tukang, <br /> Tapi Partner Renovasi Anda
             </h2>
@@ -522,7 +522,7 @@ export default function Home() {
       <section className="py-20 bg-purple-950">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-primary font-bold tracking-wider uppercase text-sm">FAQ</span>
+            <span className="text-accent font-bold tracking-wider uppercase text-sm">FAQ</span>
             <h2 className="text-3xl md:text-4xl font-bold font-display text-white mt-3 mb-4">
               Pertanyaan yang Sering Ditanyakan
             </h2>
@@ -570,9 +570,9 @@ export default function Home() {
           </h3>
         </div>
         <div className="bg-primary/5 py-12 space-y-8">
-          <Marquee items={specialties.slice(0, 4)} speed="fast" />
-          <Marquee items={specialties.slice(4, 8)} direction="right" speed="fast" />
-          <Marquee items={specialties.slice(8)} speed="fast" />
+          <Marquee items={specialties.slice(0, 4)} speed="fast" fadeColor="from-primary/5" />
+          <Marquee items={specialties.slice(4, 8)} direction="right" speed="fast" fadeColor="from-primary/5" />
+          <Marquee items={specialties.slice(8)} speed="fast" fadeColor="from-primary/5" />
         </div>
       </section>
 
@@ -722,32 +722,37 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4 text-accent">Layanan Trending</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>Renovasi Rumah</li>
-                <li>Perbaikan Atap</li>
-                <li>Instalasi Listrik</li>
-                <li>Desain Interior</li>
+                {[
+                  { label: "Renovasi Rumah", form: "Lainnya" },
+                  { label: "Perbaikan Atap", form: "Atap Bocor" },
+                  { label: "Instalasi Listrik", form: "Tarik Listrik" },
+                  { label: "Desain Interior", form: "Lainnya" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <button onClick={() => scrollToContact(item.form)} className="hover:text-accent transition-colors text-left">
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="md:col-span-1">
               <h4 className="font-bold mb-4 text-accent">Layanan Lainnya</h4>
               <div className="grid grid-cols-3 gap-x-8 gap-y-2 text-gray-400 text-sm min-w-[300px] md:min-w-[450px]">
                 <ul className="space-y-2">
-                  <li>Pasang Roster</li>
-                  <li>Plafon Akustik</li>
-                  <li>Dinding Panel</li>
-                  <li>Secondary Skin</li>
+                  {["Pasang Roster", "Plafon Akustik", "Dinding Panel", "Secondary Skin"].map((s) => (
+                    <li key={s}><button onClick={() => scrollToContact("Lainnya")} className="hover:text-accent transition-colors text-left">{s}</button></li>
+                  ))}
                 </ul>
                 <ul className="space-y-2">
-                  <li>Lantai Mezzanine</li>
-                  <li>Skylight</li>
-                  <li>Struktur Baja</li>
-                  <li>Bikin Taman</li>
+                  {["Lantai Mezzanine", "Skylight", "Struktur Baja", "Bikin Taman"].map((s) => (
+                    <li key={s}><button onClick={() => scrollToContact("Lainnya")} className="hover:text-accent transition-colors text-left">{s}</button></li>
+                  ))}
                 </ul>
                 <ul className="space-y-2">
-                  <li>Jendela Aluminium</li>
-                  <li>Atap Bitumen</li>
-                  <li>Water Heater</li>
-                  <li>Meja Makan</li>
+                  {["Jendela Aluminium", "Atap Bitumen", "Water Heater", "Meja Makan"].map((s) => (
+                    <li key={s}><button onClick={() => scrollToContact("Lainnya")} className="hover:text-accent transition-colors text-left">{s}</button></li>
+                  ))}
                 </ul>
               </div>
             </div>

@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Loader2, CheckCircle2, MessageSquare } from "lucide-react";
+import { Loader2, CheckCircle2, MessageSquare, ArrowRight, ClipboardCheck, Phone, HardHat } from "lucide-react";
 import { motion } from "framer-motion";
 
 const serviceOptions = [
@@ -69,23 +69,68 @@ export function InquiryForm({ selectedService }: InquiryFormProps) {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-black/5 border border-border/50 text-center"
+        className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-black/5 border border-border/50"
       >
-        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
-          <CheckCircle2 className="w-8 h-8 text-green-600" />
+        <div className="text-center">
+          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
+            <CheckCircle2 className="w-8 h-8 text-green-600" />
+          </div>
+          <h3 className="text-2xl font-bold font-display text-foreground mb-3">Pesan Terkirim!</h3>
+          <p className="text-gray-500 mb-6">Tim kami akan menghubungi Anda via WhatsApp dalam <span className="font-semibold text-foreground">beberapa jam</span> saat jam kerja.</p>
         </div>
-        <h3 className="text-2xl font-bold font-display text-foreground mb-3">Pesan Terkirim!</h3>
-        <p className="text-gray-500 mb-2">Tim kami akan menghubungi Anda via WhatsApp dalam <span className="font-semibold text-foreground">1x24 jam</span>.</p>
-        <p className="text-sm text-gray-400 mb-6">Butuh respons lebih cepat?</p>
-        <a
-          href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20baru%20saja%20mengisi%20formulir%20di%20website."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold transition-colors"
-          onClick={() => window.gtag?.('event', 'conversion', { send_to: 'AW-18020162559/pGTsCO234okcEP-315BD' })}
-        >
-          <MessageSquare className="w-5 h-5" /> Chat WhatsApp Langsung
-        </a>
+
+        {/* Next steps timeline */}
+        <div className="bg-gray-50 rounded-2xl p-5 mb-6">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Langkah selanjutnya</p>
+          <div className="space-y-4">
+            {[
+              { icon: Phone, text: "Tim kami menghubungi Anda via WhatsApp", highlight: true },
+              { icon: ClipboardCheck, text: "Survei lokasi gratis & presentasi RAB" },
+              { icon: HardHat, text: "Deal, kontrak, dan mulai pengerjaan" },
+            ].map((step, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${i === 0 ? "bg-green-100" : "bg-gray-200"}`}>
+                  <step.icon className={`w-4 h-4 ${i === 0 ? "text-green-600" : "text-gray-400"}`} />
+                </div>
+                <span className={`text-sm ${i === 0 ? "font-semibold text-foreground" : "text-gray-400"}`}>{step.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center">
+          <p className="text-sm text-gray-400 mb-4">Butuh respons lebih cepat?</p>
+          <a
+            href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20baru%20saja%20mengisi%20formulir%20di%20website."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold transition-colors"
+            onClick={() => window.gtag?.('event', 'conversion', { send_to: 'AW-18020162559/pGTsCO234okcEP-315BD' })}
+          >
+            <MessageSquare className="w-5 h-5" /> Chat WhatsApp Langsung
+          </a>
+        </div>
+
+        {/* Blog recommendations */}
+        <div className="mt-6 pt-6 border-t border-gray-100">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Sambil menunggu, baca panduan kami</p>
+          <div className="space-y-2">
+            {[
+              { title: "Panduan Lengkap Biaya Renovasi 2026", href: "/blog/biaya-renovasi-rumah-2026" },
+              { title: "Tips Memilih Jasa Renovasi yang Tepat", href: "/blog/panduan-renovasi-rumah-2025" },
+            ].map((article) => (
+              <a
+                key={article.href}
+                href={article.href}
+                className="flex items-center justify-between gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group"
+              >
+                <span className="text-sm text-gray-600 group-hover:text-primary transition-colors">{article.title}</span>
+                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary shrink-0 transition-colors" />
+              </a>
+            ))}
+          </div>
+        </div>
+
         <button
           onClick={() => setSubmitted(false)}
           className="block mx-auto mt-4 text-sm text-gray-400 hover:text-gray-600 transition-colors"

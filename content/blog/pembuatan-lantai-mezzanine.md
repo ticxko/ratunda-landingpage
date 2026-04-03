@@ -868,7 +868,7 @@ readTime: "10 menit"
     <h2>Siap Mulai Proyek <em>Mezzanine Anda?</em></h2>
     <p>Konsultasi gratis, survei tanpa biaya, RAB transparan — dan tim arsitek berpengalaman yang siap memastikan mezzanine Anda aman, indah, dan bernilai jangka panjang.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20proyek%20mezzanine%20dan%20minta%20estimasi%20biaya" class="btn-wa" target="_blank" rel="noopener">
+      <a href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20proyek%20mezzanine%20dan%20minta%20estimasi%20biaya" class="btn-wa" target="_blank" rel="noopener">
         💬 Chat WhatsApp Sekarang
       </a>
       <a href="https://www.ratunda.id" class="btn-outline-light" target="_blank" rel="noopener">

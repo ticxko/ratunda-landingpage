@@ -833,7 +833,7 @@ readTime: "12 menit"
     <h2>Wujudkan Ruangan Impian <em>dengan Dinding Panel Terbaik</em></h2>
     <p>Jangan tunda renovasi lebih lama. Konsultasikan sekarang — gratis, tanpa tekanan, dengan arsitek berpengalaman.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20tertarik%20dengan%20layanan%20pemasangan%20dinding%20panel%20dan%20ingin%20konsultasi%20gratis" class="btn-wa" target="_blank" rel="noopener">
+      <a href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20tertarik%20dengan%20layanan%20pemasangan%20dinding%20panel%20dan%20ingin%20konsultasi%20gratis" class="btn-wa" target="_blank" rel="noopener">
         💬 Chat WhatsApp Sekarang
       </a>
       <a href="https://www.ratunda.id" class="btn-outline-light" target="_blank" rel="noopener">

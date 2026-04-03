@@ -11,9 +11,10 @@ interface MarqueeProps {
   className?: string;
   direction?: "left" | "right";
   speed?: "slow" | "medium" | "fast";
+  fadeColor?: string;
 }
 
-export function Marquee({ items, className, direction = "left", speed = "medium" }: MarqueeProps) {
+export function Marquee({ items, className, direction = "left", speed = "medium", fadeColor }: MarqueeProps) {
   const speedClass = {
     slow: "animate-scroll-slow",
     medium: "animate-scroll",
@@ -45,8 +46,8 @@ export function Marquee({ items, className, direction = "left", speed = "medium"
       </div>
       
       {/* Fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
+      <div className={cn("absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r to-transparent z-10", fadeColor ?? "from-background")} />
+      <div className={cn("absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l to-transparent z-10", fadeColor ?? "from-background")} />
     </div>
   );
 }

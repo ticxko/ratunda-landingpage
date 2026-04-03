@@ -163,7 +163,7 @@ export default function BlogPost() {
               </span>
             </Link>
             <a
-              href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
+              href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-5 py-2 text-sm transition-colors"
@@ -256,7 +256,7 @@ export default function BlogPost() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <a
-                href="https://wa.me/628118881986?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
+                href="https://wa.me/6281188819865?text=Halo%20Ratunda%2C%20saya%20ingin%20konsultasi%20renovasi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-6 py-2.5 rounded-full transition-all hover:-translate-y-0.5 shadow-lg shadow-black/20 text-sm"
