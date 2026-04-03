@@ -404,6 +404,8 @@ export default function Home() {
             const testimonials = [
               {
                 name: "Ibu Mira",
+                initials: "IM",
+                gradient: "from-[#734375] to-[#a86aab]",
                 location: "Caryota, Cibubur",
                 service: "Renovasi Rumah",
                 text: "Saya sangat puas dengan pengalaman bekerja sama dengan tim Ratunda. Tim Ratunda bekerja dengan rapi, hasilnya memuaskan, dan sangat bisa menyesuaikan dengan budget tanpa mengurangi kualitas pekerjaan. Timnya ramah, komunikatif, dan cepat tanggap dalam merespons setiap kebutuhan maupun kendala di lapangan.",
@@ -411,6 +413,8 @@ export default function Home() {
               },
               {
                 name: "Pak Herman",
+                initials: "PH",
+                gradient: "from-[#0b142e] to-[#307d4b]",
                 location: "De Latinos, BSD",
                 service: "Renovasi Dapur",
                 text: "Awalnya cuma mau ganti kitchen set, tapi setelah diskusi sama arsitek Ratunda akhirnya sekalian redesign total layout dapur. Keputusan terbaik. Dapur yang tadinya sempit sekarang terasa luas dan fungsional. RAB transparan, tidak ada biaya siluman.",
@@ -418,6 +422,8 @@ export default function Home() {
               },
               {
                 name: "Bu Uni",
+                initials: "BU",
+                gradient: "from-[#004d26] to-[#307d4b]",
                 location: "Lebak Bulus, Jakarta Selatan",
                 service: "Atap Bocor & Waterproofing",
                 text: "Sudah bertahun-tahun pusing sama atap bocor, tiap hujan deras pasti kena. Ratunda bukan cuma tambal, tapi cari akar masalahnya sampai ke struktur rangka. Alhamdulillah sekarang musim hujan tidur nyenyak, tidak perlu siap-siap ember lagi.",
@@ -425,6 +431,8 @@ export default function Home() {
               },
               {
                 name: "Bu Anggie",
+                initials: "BA",
+                gradient: "from-[#734375] to-[#f0b12f]",
                 location: "Cirendeu, Tangerang Selatan",
                 service: "Renovasi Kamar Mandi",
                 text: "Ya ampun, kamar mandi saya jadi kayak di hotel! Dari yang tadinya jadul dan sumpek, sekarang pakai rain shower, keramik motif marmer, sama pencahayaan yang pas. Teman-teman pada nanya renovasi di mana. Hasilnya di luar ekspektasi!",
@@ -432,6 +440,8 @@ export default function Home() {
               },
               {
                 name: "Bu Sandra",
+                initials: "BS",
+                gradient: "from-[#307d4b] to-[#5ab878]",
                 location: "Bukit Permai, Cibubur",
                 service: "Pasang Kanopi & Carport",
                 text: "Tim Ratunda sopan-sopan dan bersih kerjanya. Setiap selesai kerja, area selalu dibersihkan. Kanopi carport sekarang kokoh dan desainnya pas dengan fasad rumah. Senang rasanya punya partner renovasi yang bisa dipercaya.",
@@ -439,6 +449,8 @@ export default function Home() {
               },
               {
                 name: "Pak Bonang",
+                initials: "PB",
+                gradient: "from-[#0b142e] to-[#734375]",
                 location: "Pondok Duta I, Depok",
                 service: "Cor Dak Beton Lantai 2",
                 text: "Sebagai dokter gigi, jadwal saya sangat padat dan tidak bisa sering standby di rumah. Ratunda mengerti itu — semua progres difoto dan di-update via WhatsApp, jadi saya tetap bisa pantau dari klinik. Hasilnya lantai 2 selesai tepat waktu, kokoh, dan rapi. Tidak perlu repot sama sekali.",
@@ -446,6 +458,8 @@ export default function Home() {
               },
               {
                 name: "Pak Wahyu",
+                initials: "PW",
+                gradient: "from-[#f0b12f] to-[#004d26]",
                 location: "Pondok Aren, Bintaro",
                 service: "Instalasi Listrik",
                 text: "Rumah lama, kabel sudah pada rapuh dan sering jeglek. Ratunda tarik ulang semua jalur listrik dengan rapi pakai conduit. Sekarang beban MCB aman, tidak pernah trip lagi. Worth it untuk keamanan keluarga. Recommended!",
@@ -453,6 +467,8 @@ export default function Home() {
               },
               {
                 name: "Bu Dewi",
+                initials: "BD",
+                gradient: "from-[#a86aab] to-[#307d4b]",
                 location: "Bintaro Jaya, Tangerang Selatan",
                 service: "Pembuatan Furniture Custom",
                 text: "Pesan lemari built-in dan meja kerja custom untuk ruang kerja di rumah. Ratunda bantu desain dari nol, ukurannya presisi, finishing HPL-nya halus dan rapi. Harga bersaing dibanding toko furniture, tapi kualitasnya jauh lebih bagus.",
@@ -460,6 +476,8 @@ export default function Home() {
               },
               {
                 name: "Pak Rizal",
+                initials: "PR",
+                gradient: "from-[#004d26] to-[#0b142e]",
                 location: "Grand Depok City, Depok",
                 service: "Dinding Lembab & Cat Ulang",
                 text: "Dinding rumah sudah belang-belang jamur dan cat mengelupas di mana-mana. Tim Ratunda treatment dulu lembabnya pakai waterproofing sebelum cat ulang. Sekarang dinding bersih, warnanya cerah, dan yang penting tidak balik lagi lembabnya.",
@@ -488,9 +506,14 @@ export default function Home() {
                       <p className="text-sm text-gray-600 leading-relaxed mb-4">
                         "{testimonial.text}"
                       </p>
-                      <div className="border-t border-gray-200 pt-4">
-                        <p className="font-bold text-foreground text-sm">{testimonial.name}</p>
-                        <p className="text-xs text-gray-400">{testimonial.location} — {testimonial.service}</p>
+                      <div className="border-t border-gray-200 pt-4 flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center shrink-0`}>
+                          <span className="text-white text-xs font-bold">{testimonial.initials}</span>
+                        </div>
+                        <div>
+                          <p className="font-bold text-foreground text-sm">{testimonial.name}</p>
+                          <p className="text-xs text-gray-400">{testimonial.location} — {testimonial.service}</p>
+                        </div>
                       </div>
                     </motion.div>
                   ))}
