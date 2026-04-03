@@ -224,24 +224,41 @@ export default function Home() {
       {/* Services Grid Section */}
       <section className="py-20 bg-gray-50/50">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-primary font-bold tracking-wider uppercase text-sm">Layanan Kami</span>
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
-              Apapun Masalah Rumah Anda, <br/> Kami Punya Solusinya
-            </h2>
-            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
-          </div>
+          <div className="grid lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16 items-start">
+            {/* Left: heading + description */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:sticky lg:top-28"
+            >
+              <span className="text-primary font-bold tracking-wider uppercase text-sm">Layanan Kami</span>
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mt-3 mb-4">
+                Apapun Masalah Rumah Anda, Kami Punya Solusinya
+              </h2>
+              <div className="w-20 h-1.5 bg-accent rounded-full mb-5" />
+              <p className="text-gray-500 leading-relaxed mb-6">
+                Klik layanan yang Anda butuhkan — formulir konsultasi akan langsung terisi otomatis.
+              </p>
+              <div className="hidden lg:flex items-center gap-3 text-sm text-gray-400">
+                <CheckCircle2 className="w-4 h-4 text-accent" />
+                <span>Konsultasi awal gratis, tanpa komitmen</span>
+              </div>
+            </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
-            {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                title={service.title}
-                icon={service.icon}
-                delay={index * 0.1}
-                onClick={() => scrollToContact(service.formValue)}
-              />
-            ))}
+            {/* Right: service grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+              {services.map((service, index) => (
+                <ServiceCard
+                  key={index}
+                  title={service.title}
+                  icon={service.icon}
+                  delay={index * 0.08}
+                  onClick={() => scrollToContact(service.formValue)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -337,54 +354,72 @@ export default function Home() {
       </section>
 
       {/* Why Ratunda Section */}
-      <section className="py-20 bg-slate-900">
+      <section className="py-20 lg:py-28 bg-slate-900 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-accent font-bold tracking-wider uppercase text-sm">Kenapa Ratunda?</span>
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-white mt-3 mb-4">
-              Bukan Sekadar Tukang, <br /> Tapi Partner Renovasi Anda
-            </h2>
-            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {[
-              {
-                icon: Users,
-                title: "Dipimpin Arsitek",
-                desc: "Setiap proyek diawasi langsung oleh arsitek berpengalaman dari Poiesis — biro arsitektur dengan pengalaman 10+ tahun.",
-              },
-              {
-                icon: Eye,
-                title: "Harga Transparan",
-                desc: "RAB (Rencana Anggaran Biaya) detail sebelum mulai kerja. Tidak ada biaya tersembunyi atau scope creep tanpa persetujuan.",
-              },
-              {
-                icon: Clock,
-                title: "Update Harian via WA",
-                desc: "Grup WhatsApp khusus proyek Anda. Laporan progres dan biaya setiap hari — Anda selalu tahu perkembangannya.",
-              },
-              {
-                icon: Shield,
-                title: "Bergaransi",
-                desc: "Garansi pekerjaan untuk ketenangan jangka panjang. Jika ada masalah setelah selesai, kami yang tangani.",
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left: bold statement */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-accent font-bold tracking-wider uppercase text-sm">Kenapa Ratunda?</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display text-white mt-3 mb-6 leading-[1.15]">
+                Bukan Sekadar Tukang, Tapi Partner Renovasi Anda
+              </h2>
+              <div className="w-20 h-1.5 bg-accent rounded-full mb-6" />
+              <p className="text-white/60 text-lg leading-relaxed mb-8 max-w-md">
+                Ratunda adalah sister company dari Poiesis, biro arsitektur dengan pengalaman 10+ tahun di proyek residensial dan komersial.
+              </p>
+              <Button
+                onClick={() => scrollToContact()}
+                className="h-12 px-8 rounded-full text-base font-bold bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/25 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-lg font-bold font-display text-foreground mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
+                Konsultasi Gratis <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </motion.div>
+
+            {/* Right: 2x2 feature grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {[
+                {
+                  icon: Users,
+                  title: "Dipimpin Arsitek",
+                  desc: "Setiap proyek diawasi langsung oleh arsitek berpengalaman dari Poiesis.",
+                },
+                {
+                  icon: Eye,
+                  title: "Harga Transparan",
+                  desc: "RAB detail sebelum mulai kerja. Tidak ada biaya tersembunyi atau scope creep.",
+                },
+                {
+                  icon: Clock,
+                  title: "Update Harian via WA",
+                  desc: "Grup WhatsApp khusus proyek Anda. Laporan progres dan biaya setiap hari.",
+                },
+                {
+                  icon: Shield,
+                  title: "Bergaransi",
+                  desc: "Garansi pekerjaan untuk ketenangan jangka panjang. Ada masalah? Kami tangani.",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-colors"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-accent/15 flex items-center justify-center mb-4">
+                    <item.icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-lg font-bold font-display text-white mb-2">{item.title}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -542,45 +577,64 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-purple-950">
+      <section className="py-20 lg:py-28 bg-purple-950">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-accent font-bold tracking-wider uppercase text-sm">FAQ</span>
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-white mt-3 mb-4">
-              Pertanyaan yang Sering Ditanyakan
-            </h2>
-            <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
-          </div>
+          <div className="grid lg:grid-cols-[2fr_3fr] gap-12 lg:gap-16">
+            {/* Left: heading + CTA (sticky) */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:sticky lg:top-28 lg:self-start"
+            >
+              <span className="text-accent font-bold tracking-wider uppercase text-sm">FAQ</span>
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-white mt-3 mb-4">
+                Pertanyaan yang Sering Ditanyakan
+              </h2>
+              <div className="w-20 h-1.5 bg-accent rounded-full mb-6" />
+              <p className="text-white/50 leading-relaxed mb-8">
+                Belum menemukan jawaban yang Anda cari? Hubungi kami langsung — konsultasi awal sepenuhnya gratis.
+              </p>
+              <Button
+                onClick={() => scrollToContact()}
+                className="h-12 px-8 rounded-full text-base font-bold bg-white text-foreground hover:bg-white/90 shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                Tanya Langsung <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </motion.div>
 
-          <div className="max-w-3xl mx-auto space-y-3">
-            {[
-              {
-                q: "Berapa biaya renovasi rumah di Jakarta?",
-                a: "Biaya renovasi rumah bervariasi tergantung jenis pekerjaan, luas area, dan material yang digunakan. Di Ratunda, kami memberikan RAB (Rencana Anggaran Biaya) detail setelah survei lokasi gratis, sehingga Anda tahu persis biaya sebelum pekerjaan dimulai. Tidak ada biaya tersembunyi.",
-              },
-              {
-                q: "Apakah Ratunda melayani area di luar Jakarta?",
-                a: "Ya, Ratunda melayani seluruh wilayah Jabodetabek (Jakarta, Bogor, Depok, Tangerang, Bekasi) dan kota-kota besar lainnya di Indonesia. Hubungi kami untuk konfirmasi ketersediaan di lokasi Anda.",
-              },
-              {
-                q: "Apa bedanya Ratunda dengan jasa tukang biasa?",
-                a: "Di Ratunda, setiap proyek dipimpin oleh arsitek berpengalaman dengan konsep 'One Project, One Architect In-Charge'. Arsitek kami mengawasi langsung pekerjaan tukang dan mandor di lapangan, memberikan konsultasi teknis, serta memastikan kualitas sesuai standar. Ratunda adalah sister company dari Poiesis, biro arsitektur dengan pengalaman lebih dari 10 tahun.",
-              },
-              {
-                q: "Berapa lama waktu pengerjaan renovasi rumah?",
-                a: "Durasi pengerjaan tergantung skala proyek. Perbaikan ringan seperti atap bocor bisa selesai dalam 1-3 hari. Renovasi kamar mandi atau dapur sekitar 2-4 minggu. Proyek besar seperti cor dak beton atau penambahan lantai bisa memakan waktu 1-3 bulan. Timeline detail akan tercantum dalam RAB sebelum pekerjaan dimulai.",
-              },
-              {
-                q: "Apakah ada garansi untuk pekerjaan renovasi?",
-                a: "Ya, Ratunda memberikan garansi untuk setiap pekerjaan yang telah diselesaikan. Jika terdapat masalah setelah proyek selesai yang terkait dengan kualitas pengerjaan kami, tim Ratunda akan menanganinya tanpa biaya tambahan sesuai ketentuan garansi.",
-              },
-              {
-                q: "Bagaimana cara memulai konsultasi dengan Ratunda?",
-                a: "Anda bisa menghubungi kami melalui WhatsApp di 0811-8881-9865 atau mengisi formulir konsultasi di website kami. Tim kami akan merespons dalam waktu singkat, menjadwalkan survei lokasi gratis, dan memberikan RAB detail sebelum pekerjaan dimulai. Konsultasi awal sepenuhnya gratis dan tanpa komitmen.",
-              },
-            ].map((faq, index) => (
-              <FaqItem key={index} question={faq.q} answer={faq.a} index={index} />
-            ))}
+            {/* Right: accordion */}
+            <div className="space-y-3">
+              {[
+                {
+                  q: "Berapa biaya renovasi rumah di Jakarta?",
+                  a: "Biaya renovasi rumah bervariasi tergantung jenis pekerjaan, luas area, dan material yang digunakan. Di Ratunda, kami memberikan RAB (Rencana Anggaran Biaya) detail setelah survei lokasi gratis, sehingga Anda tahu persis biaya sebelum pekerjaan dimulai. Tidak ada biaya tersembunyi.",
+                },
+                {
+                  q: "Apakah Ratunda melayani area di luar Jakarta?",
+                  a: "Ya, Ratunda melayani seluruh wilayah Jabodetabek (Jakarta, Bogor, Depok, Tangerang, Bekasi) dan kota-kota besar lainnya di Indonesia. Hubungi kami untuk konfirmasi ketersediaan di lokasi Anda.",
+                },
+                {
+                  q: "Apa bedanya Ratunda dengan jasa tukang biasa?",
+                  a: "Di Ratunda, setiap proyek dipimpin oleh arsitek berpengalaman dengan konsep 'One Project, One Architect In-Charge'. Arsitek kami mengawasi langsung pekerjaan tukang dan mandor di lapangan, memberikan konsultasi teknis, serta memastikan kualitas sesuai standar. Ratunda adalah sister company dari Poiesis, biro arsitektur dengan pengalaman lebih dari 10 tahun.",
+                },
+                {
+                  q: "Berapa lama waktu pengerjaan renovasi rumah?",
+                  a: "Durasi pengerjaan tergantung skala proyek. Perbaikan ringan seperti atap bocor bisa selesai dalam 1-3 hari. Renovasi kamar mandi atau dapur sekitar 2-4 minggu. Proyek besar seperti cor dak beton atau penambahan lantai bisa memakan waktu 1-3 bulan. Timeline detail akan tercantum dalam RAB sebelum pekerjaan dimulai.",
+                },
+                {
+                  q: "Apakah ada garansi untuk pekerjaan renovasi?",
+                  a: "Ya, Ratunda memberikan garansi untuk setiap pekerjaan yang telah diselesaikan. Jika terdapat masalah setelah proyek selesai yang terkait dengan kualitas pengerjaan kami, tim Ratunda akan menanganinya tanpa biaya tambahan sesuai ketentuan garansi.",
+                },
+                {
+                  q: "Bagaimana cara memulai konsultasi dengan Ratunda?",
+                  a: "Anda bisa menghubungi kami melalui WhatsApp di 0811-8881-9865 atau mengisi formulir konsultasi di website kami. Tim kami akan merespons dalam waktu singkat, menjadwalkan survei lokasi gratis, dan memberikan RAB detail sebelum pekerjaan dimulai. Konsultasi awal sepenuhnya gratis dan tanpa komitmen.",
+                },
+              ].map((faq, index) => (
+                <FaqItem key={index} question={faq.q} answer={faq.a} index={index} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
