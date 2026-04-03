@@ -85,6 +85,7 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState("");
+  const [showAllTestimonials, setShowAllTestimonials] = useState(false);
 
   const { data: blogPosts = [], isLoading: blogLoading } = useQuery<BlogPostMeta[]>({
     queryKey: ["/api/blog"],
@@ -399,22 +400,8 @@ export default function Home() {
             <div className="w-20 h-1.5 bg-accent rounded-full mx-auto" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                name: "Ibu Sarah",
-                location: "Kemang, Jakarta Selatan",
-                service: "Renovasi Dapur",
-                text: "Sangat puas dengan hasilnya! Arsitek dari Ratunda sangat detail dan komunikatif. Update progres via WA setiap hari bikin saya tenang meskipun lagi di kantor.",
-                rating: 5,
-              },
-              {
-                name: "Pak Budi",
-                location: "BSD, Tangerang Selatan",
-                service: "Atap Bocor & Plafon",
-                text: "Sudah coba 2 tukang sebelumnya tapi bocor terus. Ratunda survei dulu, kasih RAB jelas, lalu kerjain. Sekarang sudah 6 bulan tidak bocor lagi.",
-                rating: 5,
-              },
+          {(() => {
+            const testimonials = [
               {
                 name: "Ibu Mira",
                 location: "Caryota, Cibubur",
@@ -422,46 +409,112 @@ export default function Home() {
                 text: "Saya sangat puas dengan pengalaman bekerja sama dengan tim Ratunda. Tim Ratunda bekerja dengan rapi, hasilnya memuaskan, dan sangat bisa menyesuaikan dengan budget tanpa mengurangi kualitas pekerjaan. Timnya ramah, komunikatif, dan cepat tanggap dalam merespons setiap kebutuhan maupun kendala di lapangan.",
                 rating: 5,
               },
-            ].map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="bg-gray-50 rounded-2xl p-6 border border-gray-100 relative"
-              >
-                <Quote className="w-8 h-8 text-accent/30 mb-3" />
-                <div className="flex gap-1 mb-3">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+              {
+                name: "Pak Herman",
+                location: "De Latinos, BSD",
+                service: "Renovasi Dapur",
+                text: "Awalnya cuma mau ganti kitchen set, tapi setelah diskusi sama arsitek Ratunda akhirnya sekalian redesign total layout dapur. Keputusan terbaik. Dapur yang tadinya sempit sekarang terasa luas dan fungsional. RAB transparan, tidak ada biaya siluman.",
+                rating: 5,
+              },
+              {
+                name: "Bu Uni",
+                location: "Lebak Bulus, Jakarta Selatan",
+                service: "Atap Bocor & Waterproofing",
+                text: "Sudah bertahun-tahun pusing sama atap bocor, tiap hujan deras pasti kena. Ratunda bukan cuma tambal, tapi cari akar masalahnya sampai ke struktur rangka. Alhamdulillah sekarang musim hujan tidur nyenyak, tidak perlu siap-siap ember lagi.",
+                rating: 5,
+              },
+              {
+                name: "Bu Anggie",
+                location: "Cirendeu, Tangerang Selatan",
+                service: "Renovasi Kamar Mandi",
+                text: "Ya ampun, kamar mandi saya jadi kayak di hotel! Dari yang tadinya jadul dan sumpek, sekarang pakai rain shower, keramik motif marmer, sama pencahayaan yang pas. Teman-teman pada nanya renovasi di mana. Hasilnya di luar ekspektasi!",
+                rating: 5,
+              },
+              {
+                name: "Bu Sandra",
+                location: "Bukit Permai, Cibubur",
+                service: "Pasang Kanopi & Carport",
+                text: "Tim Ratunda sopan-sopan dan bersih kerjanya. Setiap selesai kerja, area selalu dibersihkan. Kanopi carport sekarang kokoh dan desainnya pas dengan fasad rumah. Senang rasanya punya partner renovasi yang bisa dipercaya.",
+                rating: 5,
+              },
+              {
+                name: "Pak Bonang",
+                location: "Pondok Duta I, Depok",
+                service: "Cor Dak Beton Lantai 2",
+                text: "Saya orang teknik, jadi cukup kritis soal kualitas cor dan pembesian. Ratunda pakai ready mix standar SNI, bekisting rapi, proses curing sesuai prosedur. Hasilnya solid, tidak ada retak rambut setelah beberapa bulan. Secara teknis sangat memuaskan.",
+                rating: 5,
+              },
+              {
+                name: "Pak Wahyu",
+                location: "Pondok Aren, Bintaro",
+                service: "Instalasi Listrik",
+                text: "Rumah lama, kabel sudah pada rapuh dan sering jeglek. Ratunda tarik ulang semua jalur listrik dengan rapi pakai conduit. Sekarang beban MCB aman, tidak pernah trip lagi. Worth it untuk keamanan keluarga. Recommended!",
+                rating: 5,
+              },
+              {
+                name: "Bu Dewi",
+                location: "Bintaro Jaya, Tangerang Selatan",
+                service: "Pembuatan Furniture Custom",
+                text: "Pesan lemari built-in dan meja kerja custom untuk ruang kerja di rumah. Ratunda bantu desain dari nol, ukurannya presisi, finishing HPL-nya halus dan rapi. Harga bersaing dibanding toko furniture, tapi kualitasnya jauh lebih bagus.",
+                rating: 5,
+              },
+              {
+                name: "Pak Rizal",
+                location: "Grand Depok City, Depok",
+                service: "Dinding Lembab & Cat Ulang",
+                text: "Dinding rumah sudah belang-belang jamur dan cat mengelupas di mana-mana. Tim Ratunda treatment dulu lembabnya pakai waterproofing sebelum cat ulang. Sekarang dinding bersih, warnanya cerah, dan yang penting tidak balik lagi lembabnya.",
+                rating: 5,
+              },
+            ];
+            const visibleCount = showAllTestimonials ? testimonials.length : 6;
+            return (
+              <>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                  {testimonials.slice(0, visibleCount).map((testimonial, index) => (
+                    <motion.div
+                      key={testimonial.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="bg-gray-50 rounded-2xl p-6 border border-gray-100 relative"
+                    >
+                      <Quote className="w-8 h-8 text-accent/30 mb-3" />
+                      <div className="flex gap-1 mb-3">
+                        {Array.from({ length: testimonial.rating }).map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                        ))}
+                      </div>
+                      <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                        "{testimonial.text}"
+                      </p>
+                      <div className="border-t border-gray-200 pt-4">
+                        <p className="font-bold text-foreground text-sm">{testimonial.name}</p>
+                        <p className="text-xs text-gray-400">{testimonial.location} — {testimonial.service}</p>
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                  "{testimonial.text}"
-                </p>
-                <div className="border-t border-gray-200 pt-4">
-                  <p className="font-bold text-foreground text-sm">{testimonial.name}</p>
-                  <p className="text-xs text-gray-400">{testimonial.location} — {testimonial.service}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-center mt-10"
-          >
-            <Button
-              onClick={() => scrollToContact()}
-              className="h-12 px-8 rounded-full text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
-            >
-              Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </motion.div>
+                <div className="text-center mt-10 flex flex-col items-center gap-4">
+                  {!showAllTestimonials && testimonials.length > 6 && (
+                    <button
+                      onClick={() => setShowAllTestimonials(true)}
+                      className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                    >
+                      Lihat {testimonials.length - 6} testimoni lainnya
+                    </button>
+                  )}
+                  <Button
+                    onClick={() => scrollToContact()}
+                    className="h-12 px-8 rounded-full text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
+                  >
+                    Konsultasi Gratis Sekarang <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </div>
+              </>
+            );
+          })()}
         </div>
       </section>
 
