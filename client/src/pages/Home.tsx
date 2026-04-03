@@ -441,7 +441,7 @@ export default function Home() {
                 name: "Pak Bonang",
                 location: "Pondok Duta I, Depok",
                 service: "Cor Dak Beton Lantai 2",
-                text: "Saya orang teknik, jadi cukup kritis soal kualitas cor dan pembesian. Ratunda pakai ready mix standar SNI, bekisting rapi, proses curing sesuai prosedur. Hasilnya solid, tidak ada retak rambut setelah beberapa bulan. Secara teknis sangat memuaskan.",
+                text: "Sebagai dokter gigi, jadwal saya sangat padat dan tidak bisa sering standby di rumah. Ratunda mengerti itu — semua progres difoto dan di-update via WhatsApp, jadi saya tetap bisa pantau dari klinik. Hasilnya lantai 2 selesai tepat waktu, kokoh, dan rapi. Tidak perlu repot sama sekali.",
                 rating: 5,
               },
               {
