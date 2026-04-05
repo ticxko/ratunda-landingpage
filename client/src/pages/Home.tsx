@@ -148,7 +148,7 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-display text-white leading-[1.1] mb-4">
                 Renovasi Rumah <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">
-                  Dipimpin Arsitek,
+                  Dipimpin Arsitek Handal,
                 </span>
                 <br /> Bukan Cuma Tukang
               </h1>
@@ -177,7 +177,7 @@ export default function Home() {
                   <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" /> Harga Transparan
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" /> Dipimpin Arsitek
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" /> Dipimpin Arsitek Handal
                 </div>
               </div>
             </motion.div>
@@ -385,7 +385,7 @@ export default function Home() {
               {[
                 {
                   icon: Users,
-                  title: "Dipimpin Arsitek",
+                  title: "Dipimpin Arsitek Handal",
                   desc: "Setiap proyek diawasi langsung oleh arsitek berpengalaman dari Poiesis.",
                 },
                 {
